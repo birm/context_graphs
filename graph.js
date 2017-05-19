@@ -4,7 +4,7 @@
  * @param {Array} data - An ordered list of numbers for initial data.
  * @param {String} [format] - the format of the graph, default pie.
   */
-class dazz {
+class graph {
     constructor(selector, data, format="pie") {
         this.selector = selector;
         this.data = data;
@@ -116,3 +116,5 @@ class dazz {
     }
 
 }
+
+module.exports = graph;

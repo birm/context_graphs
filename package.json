@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/birm/context_graphs/issues"
   },
-  "homepage": "https://github.com/birm/context_graphs"
+  "homepage": "https://github.com/birm/context_graphs",
+  "devDependencies": {
+    "tape": "^4.6.3"
+  }
 }
