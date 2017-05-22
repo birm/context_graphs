@@ -8,7 +8,7 @@ class graph {
     constructor(selector, data, format="pie") {
         this.selector = selector;
         this.data = data;
-        this.initial_data= data;
+        this.initial_data = data;
         this.format = format.toLowerCase();
     }
 
@@ -83,6 +83,10 @@ class graph {
       //   get y
       //   get radius
       //   make circle
+      "circle"
+      a.setAttribute("cx", x)
+      a.setAttribute("cy", y)
+      a.setAttribute("r", z)
     }
 
     /** Draw a scatter plot
@@ -96,6 +100,10 @@ class graph {
       //   get x
       //   get y
       //   draw the scatter dot
+      "circle"
+      a.setAttribute("cx", x)
+      a.setAttribute("cy", y)
+      a.setAttribute("r", z)
     }
 
     /** Draw a histogram
@@ -108,6 +116,11 @@ class graph {
       //   get offset
       //   get height
       //   draw a box
+      "rect"
+      a.setAttribute("x", x)
+      a.setAttribute("y", y)
+      a.setAttribute("width", w)
+      a.setAttribute("height", h)
     }
 
     /** Draw a bar chart
@@ -120,6 +133,11 @@ class graph {
       //   get offset
       //   get width
       //   draw a box
+      "rect"
+      a.setAttribute("x", x)
+      a.setAttribute("y", y)
+      a.setAttribute("width", w)
+      a.setAttribute("height", h)
     }
 
     /** Draw filter context for pie chart
@@ -143,6 +161,10 @@ class graph {
       //   get y
       //   get radius
       //   make circle on top
+      "circle"
+      a.setAttribute("cx", x)
+      a.setAttribute("cy", y)
+      a.setAttribute("r", z)
     }
 
     /** Draw filter context for scatter plot
@@ -156,6 +178,10 @@ class graph {
       //   get x
       //   get y
       //   draw the scatter dot
+      "circle"
+      a.setAttribute("cx", x)
+      a.setAttribute("cy", y)
+      a.setAttribute("r", z)
     }
 
     /** Draw filter context for histogram
@@ -168,6 +194,12 @@ class graph {
       //   get offset
       //   get height
       //   draw a box
+      "rect"
+      a.setAttribute("x", x)
+      a.setAttribute("y", y)
+      a.setAttribute("width", w)
+      a.setAttribute("height", h)
+
     }
 
     /* Draw filter context for bar chart
@@ -180,6 +212,11 @@ class graph {
       //   get offset
       //   get width
       //   draw a box
+      "rect"
+      a.setAttribute("x", x)
+      a.setAttribute("y", y)
+      a.setAttribute("width", w)
+      a.setAttribute("height", h)
     }
 
 }
