@@ -59,60 +59,120 @@ class graph {
      */
     pie() {
       var i;
+      // get center
+      // radius
+      // for each:
+      //   draw the pie piece
     }
 
     /** Draw a bubble chart
      */
     bubble() {
       var i;
+      // get origin
+      // draw axes
+      // for each:
+      //   get x
+      //   get y
+      //   get radius
+      //   make circle
     }
 
     /** Draw a scatter plot
      */
     scatter() {
       var i;
+      // get origin
+      // draw axes
+      // get dot size
+      // for each:
+      //   get x
+      //   get y
+      //   draw the scatter dot
     }
 
     /** Draw a histogram
      */
     hist() {
       var i;
+      // get origin
+      // draw axes
+      // for each:
+      //   get offset
+      //   get height
+      //   draw a box
     }
 
     /** Draw a bar chart
      */
     bar() {
       var i;
+      // get origin
+      // draw axes
+      // for each:
+      //   get offset
+      //   get width
+      //   draw a box
     }
 
     /** Draw filter context for pie chart
      */
     pie_filter() {
       var i;
+      // get center
+      // for each:
+      //   get radius
+      //   draw the piece on top
     }
 
     /** Draw filter context for bubble chart
      */
     bubble_filter() {
       var i;
+      // get origin
+      // draw axes
+      // for each:
+      //   get x
+      //   get y
+      //   get radius
+      //   make circle on top
     }
 
     /** Draw filter context for scatter plot
      */
     scatter_filter() {
       var i;
+      // get origin
+      // draw axes
+      // get dot size
+      // for each:
+      //   get x
+      //   get y
+      //   draw the scatter dot
     }
 
     /** Draw filter context for histogram
      */
     hist_filter() {
       var i;
+      // get origin
+      // draw axes
+      // for each:
+      //   get offset
+      //   get height
+      //   draw a box
     }
 
     /* Draw filter context for bar chart
      */
     bar_filter() {
       var i;
+      // get origin
+      // draw axes
+      // for each:
+      //   get offset
+      //   get width
+      //   draw a box
     }
 
 }
