@@ -14,6 +14,13 @@ class graph {
 
 
     /** Apply new data after a filter.
+     * @param {Int} category - the index of the color to get
+     */
+     static color_pick(index){
+       return "RGB(10,50,28)";
+     }
+
+    /** Apply new data after a filter.
      * @param {Array} data - the new data, ordered like the original data
      */
     filter(data) {
