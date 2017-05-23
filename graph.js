@@ -22,6 +22,7 @@ class graph {
      * @param {Array} data - the new data, ordered like the original data
      */
     filter(data) {
+        this.clear_filters();
         this.data = data;
         if (this.format === "bar"){
           this.bar_filter();
@@ -58,7 +59,10 @@ class graph {
       else{ // pie or invalid
         this.pie();
       }
-      //TODO draw the filters with zero, so they're ready
+    }
+
+    clear_filters(){
+      this.svg.getElementsByClassName("filtering").map(e => this.svg.removeChild(e));
     }
 
     /** Draw a pie chart
