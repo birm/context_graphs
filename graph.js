@@ -154,12 +154,17 @@ class graph {
     pie_filter() {
       // get center
       //TODO change to curve
+      var prct = 0;
       for (var point=0; point < this.data.length; point++){
-        let a = document.createElement("rect");
-        a.setAttribute("x", 0)
-        a.setAttribute("y", offset*point)
-        a.setAttribute("width", this.data[point]*this.item.getAttribute("width"))
-        a.setAttribute("height", offset);
+        let a = document.createElement("path");
+        let x = Math.cos(2*Math.PI*this.initial_data[point])*this.data[point];
+        let y = Math.sin(2*Math.PI*this.initial_data[point])*this.data[point];
+        let xt = Math.cos(2*Math.PI*prct)*this.data[point];
+        let yt = Math.sin(2*Math.PI*prct)*this.data[point];
+        prct = this.data[point] + prct;
+        let len = Math.min(this.item.getAttribute("width"),this.item.getAttribute("height"));
+        a.setAttribute("d", "M ${xt} ${yt} A ${len} ${len} 0 0 ${len} ${x} ${y} L 0 0")
+        a.classList.add('filtering');
         a.classList.add('filtering');
         a.classList.add('pie_f_'+point);
         this.svg.appendChild(a);
