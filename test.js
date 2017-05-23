@@ -4,7 +4,7 @@ var { jsdom } = require('jsdom');
 
 
 function createDocument() {
-  const document = jsdom(undefined);
+  const document = new jsdom(`<!DOCTYPE html><p>Hello world</p>`);
   const window = document.defaultView;
   global.document = document;
   global.window = window;

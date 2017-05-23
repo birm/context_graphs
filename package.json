@@ -23,6 +23,6 @@
   "homepage": "https://github.com/birm/context_graphs",
   "devDependencies": {
     "tape": "^4.6.3",
-    "jsdom": "^11.0.0"
+    "jsdom": "^9.11.0"
   }
 }
