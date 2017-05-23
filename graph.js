@@ -13,6 +13,8 @@ class graph {
         this.color = "";
         this.filtercolor="";
         this.item = document.getElementById(selector);
+        this.svg = document.createElement("svg");
+        this.item.appendChild(this.svg);
         // TODO normalize data
     }
 
@@ -74,7 +76,7 @@ class graph {
     bubble() {
       // draw axes
       for (point in this.data){
-        "circle"
+        let a = document.createElement("circle");
         a.setAttribute("cx", this.data[point][x]*this.item.getAttribute("width"));
         a.setAttribute("cy", this.data[point][y]*this.item.getAttribute("height"));
         a.setAttribute("r", this.data[point][r]);
@@ -87,10 +89,11 @@ class graph {
       // get dot size
       // draw axes
       for (point in this.data){
-        "circle"
+        let a = document.createElement("circle");
         a.setAttribute("cx", this.data[point][x]*this.item.getAttribute("width"));
         a.setAttribute("cy", this.data[point][y]*this.item.getAttribute("height"));
         a.setAttribute("r", r);
+        this.svg.appendChild(a);
       }
     }
 
@@ -101,11 +104,12 @@ class graph {
       // draw axes
       var offset = this.item.getAttribute("width")/(this.data.length);
       for (var point=0; point < this.data.length; point++){
-        "rect"
+        let a = document.createElement("rect");
         a.setAttribute("x", offset*point);
         a.setAttribute("y", 0);
         a.setAttribute("width", offset);
         a.setAttribute("height", this.data[point]*this.item.getAttribute("height"));
+        this.svg.appendChild(a);
       }
     }
 
@@ -116,11 +120,12 @@ class graph {
       // get origin
       var offset = this.item.getAttribute("height")/(this.data.length);
       for (var point=0; point < this.data.length; point++){
-        "rect"
+        let a = document.createElement("rect");
         a.setAttribute("x", 0)
         a.setAttribute("y", offset*point)
         a.setAttribute("width", this.data[point]*this.item.getAttribute("width"))
         a.setAttribute("height", offset);
+        this.svg.appendChild(a);
       }
     }
 
@@ -138,10 +143,11 @@ class graph {
     bubble_filter() {
       // draw axes
       for (point in this.data){
-        "circle"
+        let a = document.createElement("circle");
         a.setAttribute("cx", this.data[point][x]*this.item.getAttribute("width"));
         a.setAttribute("cy", this.data[point][y]*this.item.getAttribute("height"));
         a.setAttribute("r", this.data[point][r]);
+        this.svg.appendChild(a);
       }
     }
 
@@ -150,11 +156,12 @@ class graph {
     scatter_filter() {
       // draw axes
       for (point in this.data){
-        "circle"
+        let a = document.createElement("circle");
         a.setAttribute("cx", this.data[point][x]*this.item.getAttribute("width"));
         a.setAttribute("cy", this.data[point][y]*this.item.getAttribute("height"));
         // TODO pick dot dize
         a.setAttribute("r", r);
+        this.svg.appendChild(a);
       }
     }
 
@@ -164,26 +171,27 @@ class graph {
       // draw axes
       var offset = this.item.getAttribute("width")/(this.data.length);
       for (var point=0; point < this.data.length; point++){
-        "rect"
+        let a = document.createElement("rect");
         a.setAttribute("x", (offset/3)+(offset*point));
         a.setAttribute("y", 0)
         a.setAttribute("width", offset/3)
         a.setAttribute("height", this.data[point]*this.item.getAttribute("height"));
+        this.svg.appendChild(a);
       }
     }
 
     /* Draw filter context for bar chart
      */
     bar_filter() {
-      var i;
       // draw axes
       var offset = this.item.getAttribute("height")/(this.data.length);
       for (var point=0; point < this.data.length; point++){
-        "rect"
+        let a = document.createElement("rect");
         a.setAttribute("x", 0)
         a.setAttribute("y", (offset/3)+(offset*point))
         a.setAttribute("width", this.data[point]*this.item.getAttribute("width"))
         a.setAttribute("height", offset/3);
+        this.svg.appendChild(a);
       }
     }
 
