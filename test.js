@@ -2,9 +2,8 @@ var test = require('tape');
 var graph = require("./graph.js");
 var { jsdom } = require('jsdom');
 
-
 function createDocument() {
-  const document = new jsdom(`<!DOCTYPE html><p>Hello world</p>`);
+  const document = jsdom("<div id='canvas'></div>");
   const window = document.defaultView;
   global.document = document;
   global.window = window;
@@ -14,7 +13,8 @@ function createDocument() {
       global[key] = window[key];
     }
   });
-  document = createDocument();
+
+  return document;
 }
 
 document = createDocument();
