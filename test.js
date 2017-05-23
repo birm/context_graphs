@@ -2,6 +2,21 @@ var test = require('tape');
 var graph = require("./graph.js");
 
 
+function createDocument() {
+  const document = jsdom(undefined);
+  const window = document.defaultView;
+  global.document = document;
+  global.window = window;
+
+  Object.keys(window).forEach((key) => {
+    if (!(key in global)) {
+      global[key] = window[key];
+    }
+  });
+
+document = createDocument();
+
+
 test( 'initialization tests', function(t) {
       t.plan(1);
 
