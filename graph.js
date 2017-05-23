@@ -103,11 +103,13 @@ class graph {
       //   get offset
       //   get height
       //   draw a box
-      "rect"
-      a.setAttribute("x", x)
-      a.setAttribute("y", y)
-      a.setAttribute("width", w)
-      a.setAttribute("height", h)
+      for (var point=0; point < this.data.length; point++){
+        "rect"
+        a.setAttribute("x", x)
+        a.setAttribute("y", y)
+        a.setAttribute("width", w)
+        a.setAttribute("height", this.data[point]);
+      }
     }
 
     /** Draw a bar chart
@@ -120,11 +122,13 @@ class graph {
       //   get offset
       //   get width
       //   draw a box
-      "rect"
-      a.setAttribute("x", x)
-      a.setAttribute("y", y)
-      a.setAttribute("width", w)
-      a.setAttribute("height", h)
+      for (point in this.data){
+        "rect"
+        a.setAttribute("x", x)
+        a.setAttribute("y", y)
+        a.setAttribute("width", this.data[point])
+        a.setAttribute("height", h);
+      }
     }
 
     /** Draw filter context for pie chart
@@ -143,50 +147,40 @@ class graph {
       var i;
       // get origin
       // draw axes
-      // for each:
-      //   get x
-      //   get y
-      //   get radius
-      //   make circle on top
-      "circle"
-      a.setAttribute("cx", x)
-      a.setAttribute("cy", y)
-      a.setAttribute("r", z)
+      for (point in this.data){
+        "circle"
+        a.setAttribute("cx", this.data[point][x]);
+        a.setAttribute("cy", this.data[point][y]);
+        a.setAttribute("r", this.data[point][r]);
+      }
     }
 
     /** Draw filter context for scatter plot
      */
     scatter_filter() {
-      var i;
       // get origin
       // draw axes
       // get dot size
-      // for each:
-      //   get x
-      //   get y
-      //   draw the scatter dot
-      "circle"
-      a.setAttribute("cx", x)
-      a.setAttribute("cy", y)
-      a.setAttribute("r", z)
+      for (point in this.data){
+        "circle"
+        a.setAttribute("cx", this.data[point][x]);
+        a.setAttribute("cy", this.data[point][y]);
+        a.setAttribute("r", r);
+      }
     }
 
     /** Draw filter context for histogram
      */
     hist_filter() {
-      var i;
       // get origin
       // draw axes
-      // for each:
-      //   get offset
-      //   get height
-      //   draw a box
-      "rect"
-      a.setAttribute("x", x)
-      a.setAttribute("y", y)
-      a.setAttribute("width", w)
-      a.setAttribute("height", h)
-
+      for (var point=0; point < this.data.length; point++){
+        "rect"
+        a.setAttribute("x", x)
+        a.setAttribute("y", y)
+        a.setAttribute("width", w)
+        a.setAttribute("height", this.data[point]);
+      }
     }
 
     /* Draw filter context for bar chart
@@ -195,15 +189,13 @@ class graph {
       var i;
       // get origin
       // draw axes
-      // for each:
-      //   get offset
-      //   get width
-      //   draw a box
-      "rect"
-      a.setAttribute("x", x)
-      a.setAttribute("y", y)
-      a.setAttribute("width", w)
-      a.setAttribute("height", h)
+      for (point in this.data){
+        "rect"
+        a.setAttribute("x", x)
+        a.setAttribute("y", y)
+        a.setAttribute("width", this.data[point])
+        a.setAttribute("height", h);
+      }
     }
 
 }
