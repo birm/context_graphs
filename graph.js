@@ -79,7 +79,7 @@ class graph {
           let yt = Math.sin(2*Math.PI*prct);
           prct = this.data[point] + prct;
           let len = Math.min(this.item.getAttribute("width"),this.item.getAttribute("height"));
-          a.setAttribute("d", "M ${xt} ${yt} A ${len} ${len} 0 0 ${len} ${x} ${y} L 0 0")
+          a.setAttribute("d", `M ${xt} ${yt} A ${len} ${len} 0 0 ${len} ${x} ${y} L 0 0`)
           a.classList.add('filtering');
           a.classList.add('pie_'+point);
           this.svg.appendChild(a);
@@ -163,7 +163,7 @@ class graph {
         let yt = Math.sin(2*Math.PI*prct)*this.data[point];
         prct = this.data[point] + prct;
         let len = Math.min(this.item.getAttribute("width"),this.item.getAttribute("height"));
-        a.setAttribute("d", "M ${xt} ${yt} A ${len} ${len} 0 0 ${len} ${x} ${y} L 0 0")
+        a.setAttribute("d", `M ${xt} ${yt} A ${len} ${len} 0 0 ${len} ${x} ${y} L 0 0`)
         a.classList.add('filtering');
         a.classList.add('filtering');
         a.classList.add('pie_f_'+point);
