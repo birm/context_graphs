@@ -10,15 +10,9 @@ class graph {
         this.data = data;
         this.initial_data = data;
         this.format = format.toLowerCase();
+        this.color = "";
+        this.filtercolor="";
     }
-
-
-    /** Apply new data after a filter.
-     * @param {Int} category - the index of the color to get
-     */
-     static color_pick(index){
-       return "RGB(10,50,28)";
-     }
 
     /** Apply new data after a filter.
      * @param {Array} data - the new data, ordered like the original data
@@ -75,35 +69,28 @@ class graph {
     /** Draw a bubble chart
      */
     bubble() {
-      var i;
       // get origin
       // draw axes
-      // for each:
-      //   get x
-      //   get y
-      //   get radius
-      //   make circle
-      "circle"
-      a.setAttribute("cx", x)
-      a.setAttribute("cy", y)
-      a.setAttribute("r", z)
+      for (point in this.data){
+        "circle"
+        a.setAttribute("cx", this.data[point][x]);
+        a.setAttribute("cy", this.data[point][y]);
+        a.setAttribute("r", this.data[point][r]);
+      }
     }
 
     /** Draw a scatter plot
      */
     scatter() {
-      var i;
       // get origin
-      // draw axes
       // get dot size
-      // for each:
-      //   get x
-      //   get y
-      //   draw the scatter dot
-      "circle"
-      a.setAttribute("cx", x)
-      a.setAttribute("cy", y)
-      a.setAttribute("r", z)
+      // draw axes
+      for (point in this.data){
+        "circle"
+        a.setAttribute("cx", this.data[point][x]);
+        a.setAttribute("cy", this.data[point][y]);
+        a.setAttribute("r", r);
+      }
     }
 
     /** Draw a histogram
