@@ -64,12 +64,20 @@ class graph {
     /** Draw a pie chart
      */
     pie() {
-      var i;
-      // get center
-      // radius
-      // for each:
-      //   draw the pie piece
-    }
+      pie_filter() {
+        // get center
+        //TODO change to curve
+        for (var point=0; point < this.data.length; point++){
+          let a = document.createElement("rect");
+          a.setAttribute("x", 0)
+          a.setAttribute("y", offset*point)
+          a.setAttribute("width", this.data[point]*this.item.getAttribute("width"))
+          a.setAttribute("height", offset);
+          a.classList.add('filtering');
+          a.classList.add('pie_'+point);
+          this.svg.appendChild(a);
+        }
+      }
 
     /** Draw a bubble chart
      */
@@ -80,6 +88,8 @@ class graph {
         a.setAttribute("cx", this.data[point][x]*this.item.getAttribute("width"));
         a.setAttribute("cy", this.data[point][y]*this.item.getAttribute("height"));
         a.setAttribute("r", this.data[point][r]);
+        a.classList.add('bubble_'+point);
+        this.svg.appendChild(a);
       }
     }
 
@@ -93,6 +103,7 @@ class graph {
         a.setAttribute("cx", this.data[point][x]*this.item.getAttribute("width"));
         a.setAttribute("cy", this.data[point][y]*this.item.getAttribute("height"));
         a.setAttribute("r", r);
+        a.classList.add('scatter_'+point);
         this.svg.appendChild(a);
       }
     }
@@ -109,6 +120,7 @@ class graph {
         a.setAttribute("y", 0);
         a.setAttribute("width", offset);
         a.setAttribute("height", this.data[point]*this.item.getAttribute("height"));
+        a.classList.add('hist_'+point);
         this.svg.appendChild(a);
       }
     }
@@ -125,6 +137,7 @@ class graph {
         a.setAttribute("y", offset*point)
         a.setAttribute("width", this.data[point]*this.item.getAttribute("width"))
         a.setAttribute("height", offset);
+        a.classList.add('bar_'+point);
         this.svg.appendChild(a);
       }
     }
@@ -133,9 +146,17 @@ class graph {
      */
     pie_filter() {
       // get center
-      // for each:
-      //   get radius
-      //   draw the piece on top
+      //TODO change to curve
+      for (var point=0; point < this.data.length; point++){
+        let a = document.createElement("rect");
+        a.setAttribute("x", 0)
+        a.setAttribute("y", offset*point)
+        a.setAttribute("width", this.data[point]*this.item.getAttribute("width"))
+        a.setAttribute("height", offset);
+        a.classList.add('filtering');
+        a.classList.add('pie_f_'+point);
+        this.svg.appendChild(a);
+      }
     }
 
     /** Draw filter context for bubble chart
@@ -147,6 +168,8 @@ class graph {
         a.setAttribute("cx", this.data[point][x]*this.item.getAttribute("width"));
         a.setAttribute("cy", this.data[point][y]*this.item.getAttribute("height"));
         a.setAttribute("r", this.data[point][r]);
+        a.classList.add('filtering');
+        a.classList.add('bubble_f_'+point);
         this.svg.appendChild(a);
       }
     }
@@ -161,6 +184,8 @@ class graph {
         a.setAttribute("cy", this.data[point][y]*this.item.getAttribute("height"));
         // TODO pick dot dize
         a.setAttribute("r", r);
+        a.classList.add('filtering');
+        a.classList.add('scatter_f_'+point);
         this.svg.appendChild(a);
       }
     }
@@ -176,6 +201,8 @@ class graph {
         a.setAttribute("y", 0)
         a.setAttribute("width", offset/3)
         a.setAttribute("height", this.data[point]*this.item.getAttribute("height"));
+        a.classList.add('filtering');
+        a.classList.add('hist_f_'+point);
         this.svg.appendChild(a);
       }
     }
@@ -191,6 +218,8 @@ class graph {
         a.setAttribute("y", (offset/3)+(offset*point))
         a.setAttribute("width", this.data[point]*this.item.getAttribute("width"))
         a.setAttribute("height", offset/3);
+        a.classList.add('filtering');
+        a.classList.add('bar_f_'+point);
         this.svg.appendChild(a);
       }
     }
