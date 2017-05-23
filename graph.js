@@ -75,8 +75,8 @@ class graph {
       // draw axes
       for (point in this.data){
         "circle"
-        a.setAttribute("cx", this.data[point][x]);
-        a.setAttribute("cy", this.data[point][y]);
+        a.setAttribute("cx", this.data[point][x]*this.item.getAttribute("width"));
+        a.setAttribute("cy", this.data[point][y]*this.item.getAttribute("height"));
         a.setAttribute("r", this.data[point][r]);
       }
     }
@@ -88,8 +88,8 @@ class graph {
       // draw axes
       for (point in this.data){
         "circle"
-        a.setAttribute("cx", this.data[point][x]);
-        a.setAttribute("cy", this.data[point][y]);
+        a.setAttribute("cx", this.data[point][x]*this.item.getAttribute("width"));
+        a.setAttribute("cy", this.data[point][y]*this.item.getAttribute("height"));
         a.setAttribute("r", r);
       }
     }
@@ -105,7 +105,7 @@ class graph {
         a.setAttribute("x", offset*point);
         a.setAttribute("y", 0);
         a.setAttribute("width", offset);
-        a.setAttribute("height", this.data[point]);
+        a.setAttribute("height", this.data[point]*this.item.getAttribute("height"));
       }
     }
 
@@ -119,7 +119,7 @@ class graph {
         "rect"
         a.setAttribute("x", 0)
         a.setAttribute("y", offset*point)
-        a.setAttribute("width", this.data[point])
+        a.setAttribute("width", this.data[point]*this.item.getAttribute("width"))
         a.setAttribute("height", offset);
       }
     }
@@ -127,7 +127,6 @@ class graph {
     /** Draw filter context for pie chart
      */
     pie_filter() {
-      var i;
       // get center
       // for each:
       //   get radius
@@ -137,13 +136,11 @@ class graph {
     /** Draw filter context for bubble chart
      */
     bubble_filter() {
-      var i;
-      // get origin
       // draw axes
       for (point in this.data){
         "circle"
-        a.setAttribute("cx", this.data[point][x]);
-        a.setAttribute("cy", this.data[point][y]);
+        a.setAttribute("cx", this.data[point][x]*this.item.getAttribute("width"));
+        a.setAttribute("cy", this.data[point][y]*this.item.getAttribute("height"));
         a.setAttribute("r", this.data[point][r]);
       }
     }
@@ -152,11 +149,11 @@ class graph {
      */
     scatter_filter() {
       // draw axes
-      // get dot size
       for (point in this.data){
         "circle"
-        a.setAttribute("cx", this.data[point][x]);
-        a.setAttribute("cy", this.data[point][y]);
+        a.setAttribute("cx", this.data[point][x]*this.item.getAttribute("width"));
+        a.setAttribute("cy", this.data[point][y]*this.item.getAttribute("height"));
+        // TODO pick dot dize
         a.setAttribute("r", r);
       }
     }
@@ -171,7 +168,7 @@ class graph {
         a.setAttribute("x", (offset/3)+(offset*point));
         a.setAttribute("y", 0)
         a.setAttribute("width", offset/3)
-        a.setAttribute("height", this.data[point]);
+        a.setAttribute("height", this.data[point]*this.item.getAttribute("height"));
       }
     }
 
@@ -185,7 +182,7 @@ class graph {
         "rect"
         a.setAttribute("x", 0)
         a.setAttribute("y", (offset/3)+(offset*point))
-        a.setAttribute("width", this.data[point])
+        a.setAttribute("width", this.data[point]*this.item.getAttribute("width"))
         a.setAttribute("height", offset/3);
       }
     }
