@@ -7,5 +7,5 @@ test( 'initialization tests', function(t) {
 
       t.doesNotThrow( function() {
           basic = new graph("canvas",[4,5,2,1]);
-      }, '*', "new MiniMat() construction");
+      }, '*', "new graph() construction");
     });
