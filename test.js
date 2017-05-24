@@ -1,5 +1,6 @@
 var test = require('tape');
-var graph = require("./graph.js");
+var graphs = require("./graph.js");
+var graph = graphs.graph;
 var { jsdom } = require('jsdom');
 
 function createDocument() {

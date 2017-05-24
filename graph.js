@@ -270,4 +270,4 @@ class graph {
 
 }
 
-module.exports = [graph, graph_loader];
+module.exports = { graph, graph_loader};
