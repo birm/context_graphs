@@ -68,7 +68,6 @@ class graph {
     /** Draw a pie chart
      */
     pie() {
-      pie_filter() {
         // get center
         var prct = 0;
         for (var point=0; point < this.data.length; point++){
