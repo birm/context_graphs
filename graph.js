@@ -1,9 +1,20 @@
+/** Data loading and normalization features fot context graphs.
+ * @constructor
+ * @param {object} data - the data to work on.
+  */
+class graph_loader{
+  constructor(data){
+    this.data = data;
+  }
+}
+
+
 /** A manager for contextual filter graphs
  * @constructor
  * @param {String} selector - the selector for the element in which to place the graph.
- * @param {Array} data - An ordered list of numbers for initial data.
+ * @param {Object} data - An ordered list of numbers for initial data.
  * @param {String} [format] - the format of the graph, default pie.
-  */
+ */
 class graph {
     constructor(selector, data, format="pie") {
         this.selector = selector;
