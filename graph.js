@@ -1,23 +1,32 @@
 /** Data loading and normalization features fot context graphs.
  * @constructor
  * @param {object} data - the data to work on.
- * @param {Array} [from] - the variable name(s) to convert to x, y, and r respectively. Defaults to x->x.
+ * @param {Array} [source] - the variable name(s) to convert to x, y, and r respectively. Defaults to x->x.
  * @param {Boolean} [pie] - If a pie chart is intended; .max returns the sum instead of the larest element if true.
   */
 class graph_loader{
-  constructor(data, from=["x"], pie=false){
+  constructor(data, source=["x"], pie=false){
     this.data = data;
-    this.from = from;
+    this.source = source;
     this.max = false;
   }
   load(){
-    // for each item in from
-    //  get all data with from[i] label
-    //  if pie
-    //   find sum, append
-    //  else
-    //   find max, append
-    //  put the data together
+    var dest = ["x", "y", "r"];
+    var new_data = { };
+    var max = Array.apply(null, Array(this.from.length)).map(Number.prototype.valueOf,0);
+    for (var d in this.data){
+      var thisrecord = {};
+      for (var i = 0; i<Math.min(this.from.length, 3); i++ ){
+        let n = data[d][this.from[i]];
+        if (this.pie){
+          tracking[i] = tracking[i] + n;
+        } else {
+          tracking[i] = Math.max(tracking[i], n);
+        }
+        thisrecord[this.from[i]] = n;
+      }
+      new_data[d] = thisrecord;
+    }
     this.max = max;
     return new_data;
   }
