@@ -73,8 +73,8 @@ class graph {
         var prct = 0;
         for (var point=0; point < this.data.length; point++){
           let a = document.createElement("path");
-          let x = Math.cos(2*Math.PI*this.data[point]);
-          let y = Math.sin(2*Math.PI*this.data[point]);
+          let x = Math.cos(2*Math.PI*(prct+this.data[point]));
+          let y = Math.sin(2*Math.PI*(prct+this.data[point]));
           let xt = Math.cos(2*Math.PI*prct);
           let yt = Math.sin(2*Math.PI*prct);
           prct = this.data[point] + prct;
@@ -157,8 +157,8 @@ class graph {
       var prct = 0;
       for (var point=0; point < this.data.length; point++){
         let a = document.createElement("path");
-        let x = Math.cos(2*Math.PI*this.initial_data[point])*this.data[point];
-        let y = Math.sin(2*Math.PI*this.initial_data[point])*this.data[point];
+        let x = Math.cos(2*Math.PI*(prct+this.initial_data[point]))*this.data[point];
+        let y = Math.sin(2*Math.PI*(prct+this.initial_data[point]))*this.data[point];
         let xt = Math.cos(2*Math.PI*prct)*this.data[point];
         let yt = Math.sin(2*Math.PI*prct)*this.data[point];
         prct = this.data[point] + prct;
