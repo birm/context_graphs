@@ -1,5 +1,11 @@
 {
-  "luck": 5,
-  "chance":10,
-  "spirit":8
+  "luck":{
+    "x":10
+  },
+  "chance":{
+    "x":11
+  },
+  "spirit":{
+    "x":8
+  }
 }

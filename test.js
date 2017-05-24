@@ -1,5 +1,7 @@
 var test = require('tape');
-var graph = require("./graph.js");
+var graphs = require("./graph.js");
+var graph = graphs.graph;
+var loader = graphs.loader;
 var { jsdom } = require('jsdom');
 
 function createDocument() {
@@ -21,9 +23,23 @@ document = createDocument();
 
 
 test( 'initialization tests', function(t) {
-    t.plan(1);
+    t.plan(2);
+    data = {
+      "luck":{
+        "x":10
+      },
+      "chance":{
+        "x":11
+      },
+      "spirit":{
+        "x":8
+      }
+    };
+    t.doesNotThrow( function() {
+        basic = new graph("canvas", data);
+    }, '*', "new graph() construction");
 
     t.doesNotThrow( function() {
-        basic = new graph("canvas",[4,5,2,1]);
-    }, '*', "new graph() construction");
+        basic = new loader(data);
+    }, '*', "new loader() construction");
   });
