@@ -1,6 +1,6 @@
 {
   "name": "context_graphs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Filter graphs that show context for filtering.",
   "main": "graphs.js",
   "scripts": {
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/birm/context_graphs",
   "devDependencies": {
-    "tape": "^4.6.3"
+    "tape": "^4.6.3",
+    "jsdom": "^9.11.0"
   }
 }
