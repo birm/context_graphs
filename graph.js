@@ -4,7 +4,7 @@
  * @param {Array} [source] - the variable name(s) to convert to x, y, and r respectively. Defaults to x->x.
  * @param {Boolean} [pie] - If a pie chart is intended; .max returns the sum instead of the larest element if true.
   */
-class graph_loader{
+class loader{
   constructor(data, source=["x"], pie=false){
     this.data = data;
     this.source = source;
@@ -30,7 +30,7 @@ class graph_loader{
     this.max = max;
     return new_data;
   }
-  get max(){
+  max(){
     if (!this.max){
       this.load();
     }
@@ -279,4 +279,4 @@ class graph {
 
 }
 
-module.exports = { graph, graph_loader};
+module.exports = { graph, loader};
