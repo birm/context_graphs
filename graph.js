@@ -17,7 +17,7 @@ class loader{
     for (var d in this.data){
       var thisrecord = {};
       for (var i = 0; i<Math.min(this.from.length, 3); i++ ){
-        let n = data[d][this.from[i]];
+        var n = data[d][this.from[i]];
         if (this.pie){
           tracking[i] = tracking[i] + n;
         } else {
@@ -112,14 +112,14 @@ class graph {
     pie() {
         var prct = 0;
         //TODO need sum of all
-        for (var point=0; point < this.data.length; point++){
-          let a = document.createElement("path");
-          let x = Math.cos(2*Math.PI*(prct+(this.data[point]['x']/this.max[0])));
-          let y = Math.sin(2*Math.PI*(prct+(this.data[point]['x']/this.max[0])));
-          let xt = Math.cos(2*Math.PI*prct);
-          let yt = Math.sin(2*Math.PI*prct);
+        for (var point in this.data){
+          var a = document.createElement("path");
+          var x = Math.cos(2*Math.PI*(prct+(this.data[point]['x']/this.max[0])));
+          var y = Math.sin(2*Math.PI*(prct+(this.data[point]['x']/this.max[0])));
+          var xt = Math.cos(2*Math.PI*prct);
+          var yt = Math.sin(2*Math.PI*prct);
           prct = (this.data[point]['x']/this.max[0]) + prct;
-          let len = Math.min(this.item.getAttribute("width"),this.item.getAttribute("height"));
+          var len = Math.min(this.item.getAttribute("width"),this.item.getAttribute("height"));
           a.setAttribute("d", `M ${xt} ${yt} A ${len} ${len} 0 0 ${len} ${x} ${y} L 0 0`)
           a.classList.add('filtering');
           a.classList.add('pie_'+point);
@@ -131,8 +131,8 @@ class graph {
      */
     bubble() {
       // draw axes
-      for (point in this.data){
-        let a = document.createElement("circle");
+      for (var point in this.data){
+        var a = document.createElement("circle");
         a.setAttribute("cx", (this.data[point]['x']/this.max[0])*this.item.getAttribute("width"));
         a.setAttribute("cy", (this.data[point]['y']/this.max[1])*this.item.getAttribute("height"));
         a.setAttribute("r", (this.data[point]['r']/this.max[2]));
@@ -146,8 +146,8 @@ class graph {
     scatter() {
       // get dot size
       // draw axes
-      for (point in this.data){
-        let a = document.createElement("circle");
+      for (var point in this.data){
+        var a = document.createElement("circle");
         a.setAttribute("cx", (this.data[point]['x']/this.max[0])*this.item.getAttribute("width"));
         a.setAttribute("cy", (this.data[point]['y']/this.max[1])*this.item.getAttribute("height"));
         a.setAttribute("r", r);
@@ -163,7 +163,7 @@ class graph {
       // draw axes
       var offset = this.item.getAttribute("width")/(this.data.length);
       for (var point=0; point < this.data.length; point++){
-        let a = document.createElement("rect");
+        var a = document.createElement("rect");
         a.setAttribute("x", offset*point);
         a.setAttribute("y", 0);
         a.setAttribute("width", offset);
@@ -180,7 +180,7 @@ class graph {
       // get origin
       var offset = this.item.getAttribute("height")/(this.data.length);
       for (var point=0; point < this.data.length; point++){
-        let a = document.createElement("rect");
+        var a = document.createElement("rect");
         a.setAttribute("x", 0)
         a.setAttribute("y", offset*point)
         a.setAttribute("width", (this.data[point]['x']/this.max[0])*this.item.getAttribute("width"))
@@ -196,14 +196,14 @@ class graph {
       // get center
       //TODO change to curve
       var prct = 0;
-      for (var point=0; point < this.data.length; point++){
-        let a = document.createElement("path");
-        let x = Math.cos(2*Math.PI*(prct+(this.initial_data[point]['x']/this.max[0])))*(this.data[point]['x']/this.max[0]);
-        let y = Math.sin(2*Math.PI*(prct+(this.initial_data[point]['x']/this.max[0])))*(this.data[point]['x']/this.max[0]);
-        let xt = Math.cos(2*Math.PI*prct)*(this.data[point]['x']/this.max[0]);
-        let yt = Math.sin(2*Math.PI*prct)*(this.data[point]['x']/this.max[0]);
+      for (var point in this.data){
+        var a = document.createElement("path");
+        var x = Math.cos(2*Math.PI*(prct+(this.initial_data[point]['x']/this.max[0])))*(this.data[point]['x']/this.max[0]);
+        var y = Math.sin(2*Math.PI*(prct+(this.initial_data[point]['x']/this.max[0])))*(this.data[point]['x']/this.max[0]);
+        var xt = Math.cos(2*Math.PI*prct)*(this.data[point]['x']/this.max[0]);
+        var yt = Math.sin(2*Math.PI*prct)*(this.data[point]['x']/this.max[0]);
         prct = (this.data[point]['x']/this.max[0]) + prct;
-        let len = Math.min(this.item.getAttribute("width"),this.item.getAttribute("height"));
+        var len = Math.min(this.item.getAttribute("width"),this.item.getAttribute("height"));
         a.setAttribute("d", `M ${xt} ${yt} A ${len} ${len} 0 0 ${len} ${x} ${y} L 0 0`)
         a.classList.add('filtering');
         a.classList.add('filtering');
@@ -216,8 +216,8 @@ class graph {
      */
     bubble_filter() {
       // draw axes
-      for (point in this.data){
-        let a = document.createElement("circle");
+      for (var point in this.data){
+        var a = document.createElement("circle");
         a.setAttribute("cx", (this.data[point]['x']/this.max[0])*this.item.getAttribute("width"));
         a.setAttribute("cy", (this.data[point]['y']/this.max[1])*this.item.getAttribute("height"));
         a.setAttribute("r", (this.data[point]['r']/this.max[2]));
@@ -231,8 +231,8 @@ class graph {
      */
     scatter_filter() {
       // draw axes
-      for (point in this.data){
-        let a = document.createElement("circle");
+      for (var point in this.data){
+        var a = document.createElement("circle");
         a.setAttribute("cx", (this.data[point]['x']/this.max[0])*this.item.getAttribute("width"));
         a.setAttribute("cy", (this.data[point]['x']/this.max[1])*this.item.getAttribute("height"));
         // TODO pick dot dize
@@ -249,7 +249,7 @@ class graph {
       // draw axes
       var offset = this.item.getAttribute("width")/(this.data.length);
       for (var point=0; point < this.data.length; point++){
-        let a = document.createElement("rect");
+        var a = document.createElement("rect");
         a.setAttribute("x", (offset/3)+(offset*point));
         a.setAttribute("y", 0)
         a.setAttribute("width", offset/3)
@@ -266,7 +266,7 @@ class graph {
       // draw axes
       var offset = this.item.getAttribute("height")/(this.data.length);
       for (var point=0; point < this.data.length; point++){
-        let a = document.createElement("rect");
+        var a = document.createElement("rect");
         a.setAttribute("x", 0)
         a.setAttribute("y", (offset/3)+(offset*point))
         a.setAttribute("width", (this.data[point]['x']/this.max[0])*this.item.getAttribute("width"))

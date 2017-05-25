@@ -1,10 +1,24 @@
 <html>
   <head>
     <script src="graph_browser.js"></script>
-    <script></script>
   </head>
   <body>
     <div id="canvas" style="width:40px; height:40px;">
     </div>
   </body>
+  <script>
+  var a={
+    "luck":{
+      "x":10
+    },
+    "chance":{
+      "x":11
+    },
+    "spirit":{
+      "x":8
+    }
+  };
+  var b = new graph("canvas", a, [11]);
+  b.draw();
+  </script>
 </html>
