@@ -56,6 +56,8 @@ class graph {
         this.filtercolor="";
         this.item = document.getElementById(selector);
         this.svg = document.createElement("svg");
+        this.svg.setAttribute("width", "100%");
+        this.svg.setAttribute("height", "100%");
         this.item.appendChild(this.svg);
         // TODO normalize data
     }
