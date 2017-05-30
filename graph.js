@@ -55,10 +55,10 @@ class graph {
         this.color = "";
         this.filtercolor="";
         this.item = document.getElementById(selector);
-        this.svg = document.createElement("svg");
-        this.svg.setAttribute("width", "100%");
-        this.svg.setAttribute("height", "100%");
-        this.item.appendChild(this.svg);
+        this.canvas = document.createElement("canvas");
+        this.canvas.setAttribute("width", "100%");
+        this.canvas.setAttribute("height", "100%");
+        this.item.appendChild(this.canvas);
         // TODO normalize data
     }
 
@@ -106,7 +106,7 @@ class graph {
     }
 
     clear_filters(){
-      this.svg.getElementsByClassName("filtering").map(e => this.svg.removeChild(e));
+      this.canvas.getElementsByClassName("filtering").map(e => this.canvas.removeChild(e));
     }
 
     /** Draw a pie chart
@@ -125,7 +125,7 @@ class graph {
           a.setAttribute("d", `M ${xt} ${yt} A ${len} ${len} 0 0 ${len} ${x} ${y} L 0 0`)
           a.classList.add('filtering');
           a.classList.add('pie_'+point);
-          this.svg.appendChild(a);
+          this.canvas.appendChild(a);
         }
       }
 
@@ -139,7 +139,7 @@ class graph {
         a.setAttribute("cy", (this.data[point]['y']/this.max[1])*this.item.getAttribute("height"));
         a.setAttribute("r", (this.data[point]['r']/this.max[2]));
         a.classList.add('bubble_'+point);
-        this.svg.appendChild(a);
+        this.canvas.appendChild(a);
       }
     }
 
@@ -154,7 +154,7 @@ class graph {
         a.setAttribute("cy", (this.data[point]['y']/this.max[1])*this.item.getAttribute("height"));
         a.setAttribute("r", r);
         a.classList.add('scatter_'+point);
-        this.svg.appendChild(a);
+        this.canvas.appendChild(a);
       }
     }
 
@@ -171,7 +171,7 @@ class graph {
         a.setAttribute("width", offset);
         a.setAttribute("height", (this.data[point]['x']/this.max[0])*this.item.getAttribute("height"));
         a.classList.add('hist_'+point);
-        this.svg.appendChild(a);
+        this.canvas.appendChild(a);
       }
     }
 
@@ -188,7 +188,7 @@ class graph {
         a.setAttribute("width", (this.data[point]['x']/this.max[0])*this.item.getAttribute("width"))
         a.setAttribute("height", offset);
         a.classList.add('bar_'+point);
-        this.svg.appendChild(a);
+        this.canvas.appendChild(a);
       }
     }
 
@@ -210,7 +210,7 @@ class graph {
         a.classList.add('filtering');
         a.classList.add('filtering');
         a.classList.add('pie_f_'+point);
-        this.svg.appendChild(a);
+        this.canvas.appendChild(a);
       }
     }
 
@@ -225,7 +225,7 @@ class graph {
         a.setAttribute("r", (this.data[point]['r']/this.max[2]));
         a.classList.add('filtering');
         a.classList.add('bubble_f_'+point);
-        this.svg.appendChild(a);
+        this.canvas.appendChild(a);
       }
     }
 
@@ -241,7 +241,7 @@ class graph {
         a.setAttribute("r", r);
         a.classList.add('filtering');
         a.classList.add('scatter_f_'+point);
-        this.svg.appendChild(a);
+        this.canvas.appendChild(a);
       }
     }
 
@@ -258,7 +258,7 @@ class graph {
         a.setAttribute("height", (this.data[point]['x']/this.max[0])*this.item.getAttribute("height"));
         a.classList.add('filtering');
         a.classList.add('hist_f_'+point);
-        this.svg.appendChild(a);
+        this.canvas.appendChild(a);
       }
     }
 
@@ -275,7 +275,7 @@ class graph {
         a.setAttribute("height", offset/3);
         a.classList.add('filtering');
         a.classList.add('bar_f_'+point);
-        this.svg.appendChild(a);
+        this.canvas.appendChild(a);
       }
     }
 
