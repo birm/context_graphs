@@ -61,8 +61,8 @@ class graph {
         this.canvas.style.height='100%';
         this.canvas.width  = canvas.offsetWidth;
         this.canvas.height = canvas.offsetHeight;
+        this.scale = Math.min(this.canvas.width, this.canvas.height);
         this.item.appendChild(this.canvas);
-        // TODO normalize data
     }
 
     /** Apply new data after a filter.
