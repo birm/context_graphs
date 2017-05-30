@@ -124,7 +124,13 @@ class graph {
           var xt = Math.cos(2*Math.PI*prct);
           var yt = Math.sin(2*Math.PI*prct);
           prct = (this.data[point]['x']/this.max[0]) + prct;
-          var len = Math.min(this.item.getAttribute("width"),this.item.getAttribute("height"));
+
+          // go to center (half half)
+          // draw a line to x y
+          // draw an arc to xt yt
+          // draw back to center
+          // fill this shape
+
           a.setAttribute("d", `M ${xt} ${yt} A ${len} ${len} 0 0 ${len} ${x} ${y} L 0 0`)
           a.classList.add('filtering');
           a.classList.add('pie_'+point);
@@ -138,6 +144,9 @@ class graph {
       // draw axes
       for (var point in this.data){
         var a = document.createElement("circle");
+
+        // draw a circle at x y with radius r
+
         a.setAttribute("cx", (this.data[point]['x']/this.max[0])*this.item.getAttribute("width"));
         a.setAttribute("cy", (this.data[point]['y']/this.max[1])*this.item.getAttribute("height"));
         a.setAttribute("r", (this.data[point]['r']/this.max[2]));
@@ -153,6 +162,7 @@ class graph {
       // draw axes
       for (var point in this.data){
         var a = document.createElement("circle");
+        // draw a circle at x y
         a.setAttribute("cx", (this.data[point]['x']/this.max[0])*this.item.getAttribute("width"));
         a.setAttribute("cy", (this.data[point]['y']/this.max[1])*this.item.getAttribute("height"));
         a.setAttribute("r", r);
@@ -168,6 +178,8 @@ class graph {
       // draw axes
       var offset = this.item.getAttribute("width")/(this.data.length);
       for (var point=0; point < this.data.length; point++){
+
+        // draw a box offset by previous, x height
         var a = document.createElement("rect");
         a.setAttribute("x", offset*point);
         a.setAttribute("y", 0);
@@ -185,6 +197,7 @@ class graph {
       // get origin
       var offset = this.item.getAttribute("height")/(this.data.length);
       for (var point=0; point < this.data.length; point++){
+        // draw a box offset by previous, x width
         var a = document.createElement("rect");
         a.setAttribute("x", 0)
         a.setAttribute("y", offset*point)
@@ -209,6 +222,14 @@ class graph {
         var yt = Math.sin(2*Math.PI*prct)*(this.data[point]['x']/this.max[0]);
         prct = (this.data[point]['x']/this.max[0]) + prct;
         var len = Math.min(this.item.getAttribute("width"),this.item.getAttribute("height"));
+
+        // make sure on top
+        // go to center (half half)
+        // draw a line point % toward to x y
+        // draw an arc to point % towards xt yt
+        // draw back to center
+        // fill this shape
+
         a.setAttribute("d", `M ${xt} ${yt} A ${len} ${len} 0 0 ${len} ${x} ${y} L 0 0`)
         a.classList.add('filtering');
         a.classList.add('filtering');
@@ -223,6 +244,7 @@ class graph {
       // draw axes
       for (var point in this.data){
         var a = document.createElement("circle");
+        // draw a circle at x y and r on top
         a.setAttribute("cx", (this.data[point]['x']/this.max[0])*this.item.getAttribute("width"));
         a.setAttribute("cy", (this.data[point]['y']/this.max[1])*this.item.getAttribute("height"));
         a.setAttribute("r", (this.data[point]['r']/this.max[2]));
@@ -237,6 +259,9 @@ class graph {
     scatter_filter() {
       // draw axes
       for (var point in this.data){
+        // on top
+        // draw a circle at x y
+        // fill with semi-transparent.
         var a = document.createElement("circle");
         a.setAttribute("cx", (this.data[point]['x']/this.max[0])*this.item.getAttribute("width"));
         a.setAttribute("cy", (this.data[point]['x']/this.max[1])*this.item.getAttribute("height"));
