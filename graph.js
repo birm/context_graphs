@@ -56,8 +56,10 @@ class graph {
         this.filtercolor="";
         this.item = document.getElementById(selector);
         this.canvas = document.createElement("canvas");
-        this.canvas.setAttribute("width", "100%");
-        this.canvas.setAttribute("height", "100%");
+        this.canvas.style.width ='100%';
+        this.canvas.style.height='100%';
+        this.canvas.width  = canvas.offsetWidth;
+        this.canvas.height = canvas.offsetHeight;
         this.item.appendChild(this.canvas);
         // TODO normalize data
     }
