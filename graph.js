@@ -120,22 +120,16 @@ class graph {
         var prct = 0;
         //TODO need sum of all
         for (var point in this.data){
-          var x = Math.cos(2*Math.PI*(prct+(this.data[point]['x']/this.max[0])));
-          var y = Math.sin(2*Math.PI*(prct+(this.data[point]['x']/this.max[0])));
-          var xt = Math.cos(2*Math.PI*prct);
-          var yt = Math.sin(2*Math.PI*prct);
           prct = (this.data[point]['x']/this.max[0]) + prct;
           //set color and start
           this.canvas.fillStyle = this.color[point % this.color.length];
           this.canvas.beginPath();
           // go to center (half half)
           this.canvas.moveTo(this.canvas.width / 2, this.canvas.height / 2);
-          // draw a line to x y
-          this.canvas.lineTo(x * this.scale, y * this.scale);
-          // draw an arc to xt yt
-          this.canvas.arcTo(xt * this.scale, yt * this.scale);
+          // draw an arc from x y to xt yt
+          this.canvas.arc(this.canvas.width / 2, this.canvas.height / 2, this.scale, 2*Math.PI*(prct+(this.data[point]['x']/this.max[0])), 2*Math.PI*prct, false);
           // draw back to center
-          this.canvas.moveTo(this.canvas.width / 2, this.canvas.height / 2);
+          this.canvas.lineTo(this.canvas.width / 2, this.canvas.height / 2);
           // fill this shape
           this.canvas.fill();
         }
@@ -203,21 +197,14 @@ class graph {
       //TODO change to curve
       var prct = 0;
       for (var point in this.data){
-        var a = document.createElement("path");
-        var x = Math.cos(2*Math.PI*(prct+(this.initial_data[point]['x']/this.max[0])))*(this.data[point]['x']/this.max[0]);
-        var y = Math.sin(2*Math.PI*(prct+(this.initial_data[point]['x']/this.max[0])))*(this.data[point]['x']/this.max[0]);
-        var xt = Math.cos(2*Math.PI*prct)*(this.data[point]['x']/this.max[0]);
-        var yt = Math.sin(2*Math.PI*prct)*(this.data[point]['x']/this.max[0]);
-        prct = (this.data[point]['x']/this.max[0]) + prct;
+        prct = (this.initial_data[point]['x']/this.max[0]) + prct;
         this.canvas.fillStyle = this.filtercolor[point % this.color.length];
         // go to center (half half)
         this.canvas.moveTo(this.canvas.width / 2, this.canvas.height / 2);
-        // draw a line to x y
-        this.canvas.lineTo(x * this.scale, y * this.scale);
-        // draw an arc to xt yt
-        this.canvas.arcTo(xt * this.scale, yt * this.scale);
+        // draw an arc from x y to xt yt
+        this.canvas.arc(this.canvas.width / 2, this.canvas.height / 2, this.initial_data[point]['x'] * this.scale, 2*Math.PI*(prct+(this.initial_data[point]['x']/this.max[0])), 2*Math.PI*prct, false);
         // draw back to center
-        this.canvas.moveTo(this.canvas.width / 2, this.canvas.height / 2);
+        this.canvas.lineTo(this.canvas.width / 2, this.canvas.height / 2);
         // fill this shape
         this.canvas.fill();
       }
@@ -229,7 +216,7 @@ class graph {
       // draw axes
       for (var point in this.data){
         //set color and start
-        this.canvas.fillStyle = this.color[point % this.color.length];
+        this.canvas.fillStyle = this.filtercolor[point % this.color.length];
         this.canvas.beginPath();
         // draw a circle at x y and r on top
       }
@@ -241,7 +228,7 @@ class graph {
       // draw axes
       for (var point in this.data){
         //set color and start
-        this.canvas.fillStyle = this.color[point % this.color.length];
+        this.canvas.fillStyle = this.filtercolor[point % this.color.length];
         this.canvas.beginPath();
         // on top
         // draw a circle at x y
@@ -256,7 +243,7 @@ class graph {
       var offset = this.item.getAttribute("width")/(this.data.length);
       for (var point=0; point < this.data.length; point++){
         //set color and start
-        this.canvas.fillStyle = this.color[point % this.color.length];
+        this.canvas.fillStyle = this.filtercolor[point % this.color.length];
         this.canvas.beginPath();
       }
     }
@@ -268,7 +255,7 @@ class graph {
       var offset = this.item.getAttribute("height")/(this.data.length);
       for (var point=0; point < this.data.length; point++){
         //set color and start
-        this.canvas.fillStyle = this.color[point % this.color.length];
+        this.canvas.fillStyle = this.filtercolor[point % this.color.length];
         this.canvas.beginPath();
       }
     }
