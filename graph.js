@@ -56,6 +56,7 @@ class graph {
         this.filtercolor="";
         this.item = document.getElementById(selector);
         this.canvas = document.createElement("canvas");
+        this.canvas.getContext("2d");
         this.canvas.style.width ='100%';
         this.canvas.style.height='100%';
         this.canvas.width  = canvas.offsetWidth;
