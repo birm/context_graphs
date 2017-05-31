@@ -109,6 +109,16 @@ class graph {
     return this.canvas;
   }
 
+  /** Apply new data after a filter.
+   * @param {Array} text - the label text
+   * @param {Array} x - the label canvas x position
+   * @param {Array} y - the label canvas y position
+   * @param {Array} [size] - the label font size
+   */
+  label(text, x, y, size=10){
+    var i = 0;
+  }
+
   /** Draw a pie chart
    */
   pie() {
@@ -138,6 +148,7 @@ class graph {
    */
   bubble() {
     // draw axes
+    // TODO Draw clickable lables
     var i = 0;
     for (var point in this.data) {
       this.canvas.beginPath();
@@ -158,7 +169,7 @@ class graph {
   /** Draw a scatter plot
    */
   scatter() {
-    // get dot size
+    // TODO Draw clickable lables
     // draw axes
     var i = 0;
     for (var point in this.data) {
@@ -181,6 +192,7 @@ class graph {
   /** Draw a histogram
    */
   hist() {
+    // TODO Draw clickable lables
     var i = 0;
     // draw axes
     var offset = this.size[0] / (Object.keys(this.data).length);
@@ -208,6 +220,7 @@ class graph {
   /** Draw a bar chart
    */
   bar() {
+    // TODO Draw clickable lables
     var i = 0;
     // get origin
     var offset = this.size[1] / (Object.keys(this.data).length);
@@ -239,6 +252,7 @@ class graph {
   /** Draw filter context for pie chart
    */
   pie_filter() {
+    // TODO Draw clickable lables
     var i = 0;
     // get center
     //TODO change to curve
@@ -268,6 +282,7 @@ class graph {
   /** Draw filter context for bubble chart
    */
   bubble_filter() {
+    // TODO Draw clickable lables
     // draw axes
     var i = 0;
     for (var point in this.data) {
@@ -288,6 +303,7 @@ class graph {
   /** Draw filter context for scatter plot
    */
   scatter_filter() {
+    // TODO Draw clickable lables
     var i = 0;
     // draw axes
     for (var point in this.data) {
@@ -306,6 +322,7 @@ class graph {
   /** Draw filter context for histogram
    */
   hist_filter() {
+    // TODO Draw clickable lables
     // draw axes
     var i = 0;
     var offset = this.size[0] / (Object.keys(this.data).length);
