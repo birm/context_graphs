@@ -73,6 +73,7 @@ class graph {
     this.item.appendChild(this.frame);
     this.labels={};
     this.filtered=false;
+    // TODO add addEventListener('click', function(event) {}); 
   }
 
   /** Apply new data after a filter.
@@ -130,7 +131,7 @@ class graph {
    * @param {Int} x - the x position of the click
    * @param {Int} y - the y position of the click
    */
-  onclick(x,y){
+  closest_label(x,y){
     this.labels;
     var dist = inf;
     var closest;
@@ -147,8 +148,8 @@ class graph {
   /** Draw a pie chart
    */
   pie() {
+    // labels
     var prct = 0;
-    //TODO need sum of all
     var i = 0;
     for (var point in this.data) {
       this.canvas.beginPath();
