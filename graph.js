@@ -71,6 +71,7 @@ class graph {
     this.frame.height = this.size[1];
     this.scale = Math.min(this.size[0], this.size[1]) / 2;
     this.item.appendChild(this.frame);
+    this.labels={};
   }
 
   /** Apply new data after a filter.
@@ -109,14 +110,25 @@ class graph {
     return this.canvas;
   }
 
-  /** Apply new data after a filter.
-   * @param {Array} text - the label text
-   * @param {Array} x - the label canvas x position
-   * @param {Array} y - the label canvas y position
-   * @param {Array} [size] - the label font size
+  /** Create and register a data label.
+   * @param {String} text - the label text
+   * @param {Int} x - the label canvas x position
+   * @param {Int} y - the label canvas y position
+   * @param {Int} [size] - the label font size
    */
   label(text, x, y, size=10){
     var i = 0;
+    // register this point
+  }
+  /** Apply new data after a filter.
+   * @param {Int} x - the x position of the click
+   * @param {Int} y - the y position of the click
+   */
+  onclick(x,y){
+    this.labels;
+    // search
+    // return closest
+    return n
   }
 
   /** Draw a pie chart
