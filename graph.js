@@ -69,7 +69,7 @@ class graph {
     this.canvas = this.frame.getContext("2d");
     this.frame.width = this.size[0];
     this.frame.height = this.size[1];
-    this.scale = Math.min(this.size[0], this.size[1]);
+    this.scale = Math.min(this.size[0], this.size[1])/2;
     this.item.appendChild(this.frame);
   }
 

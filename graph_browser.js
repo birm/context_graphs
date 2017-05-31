@@ -62,14 +62,14 @@ class graph {
     this.max = max;
     this.initial_data = data;
     this.format = format.toLowerCase();
-    this.color = ["#FFFFFF"];
-    this.filtercolor = ["#555555"];
+    this.color = ["#333333", "#444444"];
+    this.filtercolor = ["#555555", "#666666"];
     this.item = document.getElementById(selector);
     this.frame = document.createElement("canvas");
     this.canvas = this.frame.getContext("2d");
     this.frame.width = this.size[0];
     this.frame.height = this.size[1];
-    this.scale = Math.min(this.size[0], this.size[1]);
+    this.scale = Math.min(this.size[0], this.size[1])/2;
     this.item.appendChild(this.frame);
   }
 
