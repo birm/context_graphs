@@ -98,6 +98,7 @@ class graph {
   /** Draw a graph of the specified type.
    */
   draw() {
+    this.canvas.clearRect(0, 0, this.frame.width, this.frame.height);
     if (this.format === "bar") {
       this.bar();
     } else if (this.format === "histogram") {
