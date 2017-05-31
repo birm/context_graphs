@@ -77,7 +77,6 @@ class graph {
    * @param {Array} data - the new data, ordered like the original data
    */
   filter(data) {
-    this.clear_filters();
     this.data = data;
     if (this.format === "bar") {
       this.bar_filter();
@@ -108,12 +107,6 @@ class graph {
       this.pie();
     }
     return this.canvas;
-  }
-
-  clear_filters() {
-    var i = 0;
-    // TODO -- figure out how to do this now with canvas
-    // maybe by z-ind?
   }
 
   /** Draw a pie chart
