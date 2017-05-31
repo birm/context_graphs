@@ -19,6 +19,18 @@
     }
   };
   var b = new graph("canvas", a, [43], "hist");
-  b.hist();
+  //b.hist();
+  var c={
+    "luck":{
+      "x":10
+    },
+    "chance":{
+      "x":20
+    },
+    "spirit":{
+      "x":3
+    }
+  };
+  b.filter(c);
   </script>
 </html>
