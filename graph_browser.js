@@ -196,12 +196,10 @@ class graph {
     for (var point in this.data) {
       this.canvas.beginPath();
       // draw a box offset by previous, data set height
-      this.canvas.moveTo(offset * i, 0);
-      this.canvas.lineTo(offset * i, this.scale * this.data[point]['x']);
-      this.canvas.lineTo(offset * (i + 1), this.scale * this.data[point][
-        'x'
-      ]);
-      this.canvas.lineTo(offset * (i + 1), 0);
+      this.canvas.moveTo(offset * i, this.size[1]);
+      this.canvas.lineTo(offset * i, this.size[1]-this.scale * (this.data[point]['x']/this.max[0]));
+      this.canvas.lineTo(offset * (i + 1), this.size[1]-this.scale * (this.data[point]['x']/this.max[0]));
+      this.canvas.lineTo(offset * (i + 1), this.size[1]);
       this.canvas.closePath();
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
