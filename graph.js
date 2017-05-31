@@ -72,6 +72,7 @@ class graph {
     this.scale = Math.min(this.size[0], this.size[1]) / 2;
     this.item.appendChild(this.frame);
     this.labels={};
+    this.filtered=false;
   }
 
   /** Apply new data after a filter.
@@ -90,6 +91,7 @@ class graph {
     } else { // pie or invalid
       this.pie_filter();
     }
+    this.filtered = true;
     return this.canvas;
   }
 
@@ -107,6 +109,7 @@ class graph {
     } else { // pie or invalid
       this.pie();
     }
+    this.filtered = false;
     return this.canvas;
   }
 
@@ -132,11 +135,11 @@ class graph {
     var closest;
     var pos;
     for (var label in this.labels) {
-      pos = ((this.labels[label][0])^2 + (this.labels[label][1])^2)^(1/2);
+      pos = Math.sqrt((this.labels[label][0])^2 + (this.labels[label][1])^2);
       if (pos < dist){
         closest = point;
       }
-    return closest
+    return closest;
     }
   }
 
