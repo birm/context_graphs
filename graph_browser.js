@@ -82,13 +82,13 @@ class graph {
     if (this.format === "bar") {
       this.bar_filter();
     }
-    if (this.format === "histogram") {
+    else if (this.format === "histogram") {
       this.hist_filter();
     }
-    if (this.format === "scatter") {
+    else if (this.format === "scatter") {
       this.scatter_filter();
     }
-    if (this.format === "bubble") {
+    else if (this.format === "bubble") {
       this.bubble_filter();
     } else { // pie or invalid
       this.pie_filter();
@@ -102,13 +102,13 @@ class graph {
     if (this.format === "bar") {
       this.bar();
     }
-    if (this.format === "histogram") {
+    else if (this.format === "histogram") {
       this.hist();
     }
-    if (this.format === "scatter") {
+    else if (this.format === "scatter") {
       this.scatter();
     }
-    if (this.format === "bubble") {
+    else if (this.format === "bubble") {
       this.bubble();
     } else { // pie or invalid
       this.pie();
@@ -323,10 +323,10 @@ class graph {
     for (var point in this.data) {
       this.canvas.beginPath();
       this.canvas.moveTo(offset * (i+1/3), this.size[1]);
-      this.canvas.lineTo(offset * (i+1/3), this.size[1]-this.scale * this.data[point]['x']);
-      this.canvas.lineTo(offset * (i + 2/3), this.size[1]-this.scale * this.data[point][
-        'x'
-      ]);
+      this.canvas.lineTo(offset * (i+1/3), this.size[1]-this.scale * (this.data[
+        point]['x'] / this.max[0]));
+      this.canvas.lineTo(offset * (i + 2/3), this.size[1]-this.scale * (this.data[
+        point]['x'] / this.max[0]));
       this.canvas.lineTo(offset * (i + 2/3), this.size[1]);
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
