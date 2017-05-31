@@ -130,22 +130,20 @@ class graph {
     //TODO need sum of all
     var i = 0;
     for (var point in this.data) {
-      prct = (this.data[point]['x'] / this.max[0]) + prct;
       this.canvas.beginPath();
       // go to center (half half)
       this.canvas.moveTo(this.size[0] / 2, this.size[1] / 2);
       // draw an arc from x y to xt yt
-      this.canvas.arc(this.size[0] / 2, this.size[1] / 2, this.scale,
-        2 * Math.PI * (prct + (this.data[point]['x'] / this.max[0])), 2 *
-        Math.PI * prct);
+      this.canvas.arc(this.size[0] / 2, this.size[1] / 2, this.scale, 2 *
+      Math.PI * prct ,
+        2 * Math.PI * (prct + (this.data[point]['x'] / this.max[0])) );
       // draw back to center
       this.canvas.lineTo(this.size[0] / 2, this.size[1] / 2);
       this.canvas.closePath();
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
-      // log what's drawn
-      console.log(this.color[i % this.color.length] + " " + point);
       this.canvas.fill();
+      prct = (this.data[point]['x'] / this.max[0]) + prct;
       i++;
     }
   }
@@ -242,18 +240,19 @@ class graph {
     //TODO change to curve
     var prct = 0;
     for (var point in this.data) {
-      prct = (this.initial_data[point]['x'] / this.max[0]) + prct;
+
       // go to center (half half)
       this.canvas.moveTo(this.size[0] / 2, this.size[1] / 2);
       // draw an arc from x y to xt yt
       this.canvas.arc(this.size[0] / 2, this.size[1] / 2, this.initial_data[
-        point]['x'] * this.scale, 2 * Math.PI * (prct + (this.initial_data[
-        point]['x'] / this.max[0])), 2 * Math.PI * prct);
+        point]['x'] * this.scale, 2 * Math.PI * prct, 2 * Math.PI * (prct + (this.initial_data[
+        point]['x'] / this.max[0])));
       // draw back to center
       this.canvas.lineTo(this.size[0] / 2, this.size[1] / 2);
       this.canvas.closePath();
       // fill this shape
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
+      prct = (this.initial_data[point]['x'] / this.max[0]) + prct;
       this.canvas.fill();
       i++;
     }
