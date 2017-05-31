@@ -218,17 +218,18 @@ class graph {
     for (var point in this.data) {
       this.canvas.beginPath();
       // draw a box offset by previous, data set width
-      this.canvas.moveTo(0, offset * point);
-      this.canvas.lineTo(this.scale * this.data[point]['x'], offset * point);
-      this.canvas.lineTo(this.scale * this.data[point]['x'], offset * (point +
+      this.canvas.moveTo(0, offset * i);
+      this.canvas.lineTo(this.scale * this.data[point]['x'], offset * i);
+      this.canvas.lineTo(this.scale * this.data[point]['x'], offset * (i +
         1));
-      this.canvas.lineTo(0, offset * (point + 1));
+      this.canvas.lineTo(0, offset * (i + 1));
       this.canvas.closePath();
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
+      // log information
+      console.log(`${point}[${this.data[point]['x']}] colored ${this.color[i % this.color.length]}`)
       this.canvas.fill();
       i++;
-
     }
   }
 

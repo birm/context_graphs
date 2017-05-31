@@ -181,6 +181,7 @@ class graph {
       this.canvas.closePath();
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
+      console.log(`${point}[${this.data[point]['x']},${this.data[point]['y']}] colored ${this.color[i % this.color.length]}`)
       this.canvas.fill();
       i++;
     }
@@ -191,19 +192,21 @@ class graph {
   hist() {
     var i = 0;
     // draw axes
-    var offset = this.size[0] / (this.data.length);
+    var offset = this.size[0] / (Object.keys(this.data).length);
     for (var point in this.data) {
       this.canvas.beginPath();
       // draw a box offset by previous, data set height
-      this.canvas.moveTo(offset * point, 0);
-      this.canvas.lineTo(offset * point, this.scale * this.data[point]['x']);
-      this.canvas.lineTo(offset * (point + 1), this.scale * this.data[point][
+      this.canvas.moveTo(offset * i, 0);
+      this.canvas.lineTo(offset * i, this.scale * this.data[point]['x']);
+      this.canvas.lineTo(offset * (i + 1), this.scale * this.data[point][
         'x'
       ]);
-      this.canvas.lineTo(offset * (point + 1), 0);
+      this.canvas.lineTo(offset * (i + 1), 0);
       this.canvas.closePath();
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
+      // log information
+      console.log(`${point}[${this.data[point]['x']}] colored ${this.color[i % this.color.length]}`)
       this.canvas.fill();
       i++;
     }
@@ -214,21 +217,25 @@ class graph {
   bar() {
     var i = 0;
     // get origin
-    var offset = this.size[1] / (this.data.length);
+    var offset = this.size[1] / (Object.keys(this.data).length);
     for (var point in this.data) {
       this.canvas.beginPath();
       // draw a box offset by previous, data set width
-      this.canvas.moveTo(0, offset * point);
-      this.canvas.lineTo(this.scale * this.data[point]['x'], offset * point);
-      this.canvas.lineTo(this.scale * this.data[point]['x'], offset * (point +
+      this.canvas.moveTo(0, offset * i);
+      this.canvas.lineTo(this.scale * (this.data[point]['x']/this.max[0]), offset * i);
+      this.canvas.lineTo(this.scale * (this.data[point]['x']/this.max[0]), offset * (i +
         1));
-      this.canvas.lineTo(0, offset * (point + 1));
+      this.canvas.lineTo(0, offset * (i + 1));
       this.canvas.closePath();
+      // TODO remove, but log line info
+      console.log(this.scale *(this.data[point]['x']/this.max[0]))
+      console.log(offset)
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
+      // log information
+      console.log(`${point}[${this.data[point]['x']}] colored ${this.color[i % this.color.length]}`)
       this.canvas.fill();
       i++;
-
     }
   }
 
@@ -298,15 +305,15 @@ class graph {
   hist_filter() {
     // draw axes
     var i = 0;
-    var offset = this.size[0] / (this.data.length);
+    var offset = this.size[0] / (Object.keys(this.data).length);
     for (var point in this.data) {
       this.canvas.beginPath();
-      this.canvas.moveTo(offset * point, 0);
-      this.canvas.lineTo(offset * point, this.scale * this.data[point]['x']);
-      this.canvas.lineTo(offset * (point + 1), this.scale * this.data[point][
+      this.canvas.moveTo(offset * i, 0);
+      this.canvas.lineTo(offset * i, this.scale * this.data[point]['x']);
+      this.canvas.lineTo(offset * (i + 1), this.scale * this.data[point][
         'x'
       ]);
-      this.canvas.lineTo(offset * (point + 1), 0);
+      this.canvas.lineTo(offset * (i + 1), 0);
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
@@ -319,13 +326,13 @@ class graph {
   bar_filter() {
     // draw axes
     var i = 0;
-    var offset = this.size[1] / (this.data.length);
+    var offset = this.size[1] / (Object.keys(this.data).length);
     for (var point in this.data) {
       this.canvas.beginPath();
       // draw a box offset by previous, data set width
-      this.canvas.moveTo(0, offset * point);
-      this.canvas.lineTo(this.scale * this.data[point]['x'], offset * point);
-      this.canvas.lineTo(this.scale * this.data[point]['x'], offset * (point +
+      this.canvas.moveTo(0, offset * i);
+      this.canvas.lineTo(this.scale * this.data[point]['x'], offset * i);
+      this.canvas.lineTo(this.scale * this.data[point]['x'], offset * (i +
         1));
       this.canvas.lineTo(0, offset * (point + 1));
       this.canvas.closePath();
