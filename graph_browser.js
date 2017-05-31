@@ -128,6 +128,7 @@ class graph {
   pie() {
     var prct = 0;
     //TODO need sum of all
+    var i = 0;
     for (var point in this.data) {
       prct = (this.data[point]['x'] / this.max[0]) + prct;
       this.canvas.beginPath();
@@ -141,9 +142,9 @@ class graph {
       this.canvas.lineTo(this.size[0] / 2, this.size[1] / 2);
       this.canvas.closePath();
       // fill this shape
-      this.canvas.fillStyle = this.color[point % this.color.length];
+      this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
-      return this.canvas;
+      i++;
     }
   }
 
@@ -151,6 +152,7 @@ class graph {
    */
   bubble() {
     // draw axes
+    var i = 0;
     for (var point in this.data) {
       this.canvas.beginPath();
       // draw a circle at x y with radius r
@@ -159,9 +161,9 @@ class graph {
         Math.PI);
       this.canvas.closePath();
       // fill this shape
-      this.canvas.fillStyle = this.color[point % this.color.length];
+      this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
-      return this.canvas;
+      i++;
     }
   }
 
@@ -170,6 +172,7 @@ class graph {
   scatter() {
     // get dot size
     // draw axes
+    var i = 0;
     for (var point in this.data) {
       this.canvas.beginPath();
       // draw a circle at x y
@@ -177,16 +180,16 @@ class graph {
         this.data[point]['y'], 2, 0, 2 * Math.PI)
       this.canvas.closePath();
       // fill this shape
-      this.canvas.fillStyle = this.color[point % this.color.length];
+      this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
-      return this.canvas;
+      i++;
     }
   }
 
   /** Draw a histogram
    */
   hist() {
-    var i;
+    var i = 0;
     // draw axes
     var offset = this.size[0] / (this.data.length);
     for (var point in this.data) {
@@ -200,16 +203,16 @@ class graph {
       this.canvas.lineTo(offset * (point + 1), 0);
       this.canvas.closePath();
       // fill this shape
-      this.canvas.fillStyle = this.color[point % this.color.length];
+      this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
-      return this.canvas;
+      i++;
     }
   }
 
   /** Draw a bar chart
    */
   bar() {
-    var i;
+    var i = 0;
     // get origin
     var offset = this.size[1] / (this.data.length);
     for (var point in this.data) {
@@ -222,9 +225,9 @@ class graph {
       this.canvas.lineTo(0, offset * (point + 1));
       this.canvas.closePath();
       // fill this shape
-      this.canvas.fillStyle = this.color[point % this.color.length];
+      this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
-      return this.canvas;
+      i++;
 
     }
   }
@@ -232,12 +235,12 @@ class graph {
   /** Draw filter context for pie chart
    */
   pie_filter() {
+    var i = 0;
     // get center
     //TODO change to curve
     var prct = 0;
     for (var point in this.data) {
       prct = (this.initial_data[point]['x'] / this.max[0]) + prct;
-      this.canvas.fillStyle = this.filtercolor[point % this.color.length];
       // go to center (half half)
       this.canvas.moveTo(this.size[0] / 2, this.size[1] / 2);
       // draw an arc from x y to xt yt
@@ -248,8 +251,9 @@ class graph {
       this.canvas.lineTo(this.size[0] / 2, this.size[1] / 2);
       this.canvas.closePath();
       // fill this shape
+      this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
-      return this.canvas;
+      i++;
     }
   }
 
@@ -257,32 +261,34 @@ class graph {
    */
   bubble_filter() {
     // draw axes
+    var i = 0;
     for (var point in this.data) {
-      //set color and start
-      this.canvas.fillStyle = this.filtercolor[point % this.color.length];
       this.canvas.beginPath();
       // draw a circle at x y and r on top
       this.canvas.arc(this.size[0] * this.data[point]['x'], this.size[1] *
         this.data[point]['y'], this.data[point]['r'] * this.scale, 0, 2 *
         Math.PI);
       this.canvas.closePath();
+      this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
+      i++;
     }
   }
 
   /** Draw filter context for scatter plot
    */
   scatter_filter() {
+    var i = 0;
     // draw axes
     for (var point in this.data) {
-      //set color and start
-      this.canvas.fillStyle = this.filtercolor[point % this.color.length];
       this.canvas.beginPath();
       // on top
       this.canvas.arc(this.size[0] * this.data[point]['x'], this.size[1] *
         this.data[point]['y'], 2, 0, 2 * Math.PI);
       this.canvas.closePath();
+      this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
+      i++;
     }
   }
 
@@ -290,10 +296,9 @@ class graph {
    */
   hist_filter() {
     // draw axes
+    var i = 0;
     var offset = this.size[0] / (this.data.length);
     for (var point in this.data) {
-      //set color and start
-      this.canvas.fillStyle = this.filtercolor[point % this.color.length];
       this.canvas.beginPath();
       this.canvas.moveTo(offset * point, 0);
       this.canvas.lineTo(offset * point, this.scale * this.data[point]['x']);
@@ -302,8 +307,9 @@ class graph {
       ]);
       this.canvas.lineTo(offset * (point + 1), 0);
       this.canvas.closePath();
+      this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
-      return this.canvas;
+      i++;
     }
   }
 
@@ -311,10 +317,9 @@ class graph {
    */
   bar_filter() {
     // draw axes
+    var i = 0;
     var offset = this.size[1] / (this.data.length);
     for (var point in this.data) {
-      //set color and start
-      this.canvas.fillStyle = this.filtercolor[point % this.color.length];
       this.canvas.beginPath();
       // draw a box offset by previous, data set width
       this.canvas.moveTo(0, offset * point);
@@ -323,8 +328,9 @@ class graph {
         1));
       this.canvas.lineTo(0, offset * (point + 1));
       this.canvas.closePath();
+      this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
-      return this.canvas;
+      i++;
     }
   }
 
