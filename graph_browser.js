@@ -261,8 +261,9 @@ class graph {
       // go to center (half half)
       this.canvas.moveTo(this.size[0] / 2, this.size[1] / 2);
       // draw an arc from x y to xt yt
-      this.canvas.arc(this.size[0] / 2, this.size[1] / 2, (this.data[
-        point]['x'] / this.max[0]), 2 *
+      this.canvas.arc(this.size[0] / 2, this.size[1] / 2, this.scale*(this.data[
+        point]['x'] / this.initial_data[
+          point]['x']), 2 *
           Math.PI * prct,
           2 * Math.PI * (prct + (this.initial_data[point]['x'] / this.max[0])));
       // draw back to center
