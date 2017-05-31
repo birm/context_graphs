@@ -156,8 +156,8 @@ class graph {
     for (var point in this.data) {
       this.canvas.beginPath();
       // draw a circle at x y with radius r
-      this.canvas.arc(this.size[0] * this.data[point]['x'], this.size[1] *
-        this.data[point]['y'], this.data[point]['r'] * this.scale, 0, 2 *
+      this.canvas.arc(this.size[0] * (this.data[point]['x']/this.max[0]), this.size[1] *
+        (this.data[point]['y']/this.max[1]), (this.data[point]['r']/this.max[2]) * this.scale, 0, 2 *
         Math.PI);
       this.canvas.closePath();
       // fill this shape
@@ -176,8 +176,8 @@ class graph {
     for (var point in this.data) {
       this.canvas.beginPath();
       // draw a circle at x y
-      this.canvas.arc(this.size[0] * this.data[point]['x'], this.size[1] *
-        this.data[point]['y'], 2, 0, 2 * Math.PI)
+      this.canvas.arc(this.size[0] * (this.data[point]['x']/this.max[0]), this.size[1] *
+        (this.data[point]['y']/this.max[1]), 2, 0, 2 * Math.PI)
       this.canvas.closePath();
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
