@@ -117,8 +117,10 @@ class graph {
    * @param {Int} [size] - the label font size
    */
   label(text, x, y, size=10){
-    var i = 0;
+    this.canvas.font = parseInt(size,10) + "px Georgia";
+    this.canvas.fillText(text, x, y);
     // register this point
+    this.labels[text] = [x, y];
   }
   /** Apply new data after a filter.
    * @param {Int} x - the x position of the click
@@ -126,9 +128,16 @@ class graph {
    */
   onclick(x,y){
     this.labels;
-    // search
-    // return closest
-    return n
+    var dist = inf;
+    var closest;
+    var pos;
+    for (var label in this.labels) {
+      pos = ((this.labels[label][0])^2 + (this.labels[label][1])^2)^(1/2);
+      if (pos < dist){
+        closest = point;
+      }
+    return closest
+    }
   }
 
   /** Draw a pie chart
