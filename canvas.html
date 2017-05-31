@@ -1,10 +1,36 @@
 <html>
   <head>
     <script src="graph_browser.js"></script>
-    <script></script>
   </head>
   <body>
-    <div id="canvas" style="width:40px; height:40px;">
+    <div id="canvas" style="width:400px; height:400px;">
     </div>
   </body>
+  <script>
+  var a={
+    "luck":{
+      "x":14
+    },
+    "chance":{
+      "x":22
+    },
+    "spirit":{
+      "x":7
+    }
+  };
+  var b = new graph("canvas", a, [43], "pie");
+  b.draw();
+  var c={
+    "luck":{
+      "x":10
+    },
+    "chance":{
+      "x":20
+    },
+    "spirit":{
+      "x":3
+    }
+  };
+  b.filter(c);
+  </script>
 </html>
