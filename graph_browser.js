@@ -62,8 +62,8 @@ class graph {
     this.max = max;
     this.initial_data = data;
     this.format = format.toLowerCase();
-    this.color = ["#333333", "#444444"];
-    this.filtercolor = ["#555555", "#666666"];
+    this.color = ["#333333", "#444444", "#555555", "#666666"];
+    this.filtercolor = ["#550000", "#660000"];
     this.item = document.getElementById(selector);
     this.frame = document.createElement("canvas");
     this.canvas = this.frame.getContext("2d");
@@ -143,6 +143,8 @@ class graph {
       this.canvas.closePath();
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
+      // log what's drawn
+      console.log(this.color[i % this.color.length] + " " + point);
       this.canvas.fill();
       i++;
     }
