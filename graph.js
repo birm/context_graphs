@@ -53,7 +53,7 @@ class graph {
     if (Number.isInteger(size)){
       size = [size, size];
     }
-    if (this.size.length <2){
+    if (size.length <2){
       new Error("Size should be an integer or 2 elment array.")
     }
     this.size = size;
