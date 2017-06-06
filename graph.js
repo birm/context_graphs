@@ -165,7 +165,9 @@ class graph {
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
-      this.label(point, 0, 0);
+      this.label(point,
+        Math.cos(2 * Math.PI * (prct + (this.data[point]['x'] / (2*this.max[0])))),
+        Math.cos(2 * Math.PI * (prct + (this.data[point]['x'] / (2*this.max[0])))));
       prct = (this.data[point]['x'] / this.max[0]) + prct;
       i++;
     }
@@ -303,10 +305,12 @@ class graph {
       this.canvas.closePath();
       // fill this shape
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
-      prct = (this.initial_data[point]['x'] / this.max[0]) + prct;
       this.canvas.fill();
-      this.label(point, 0, 0);
+      this.label(point,
+        Math.cos(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0])))),
+        Math.cos(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0])))));
       i++;
+      prct = (this.initial_data[point]['x'] / this.max[0]) + prct;
     }
   }
 
