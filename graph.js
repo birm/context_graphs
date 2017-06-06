@@ -119,13 +119,15 @@ class graph {
    * @param {String} text - the label text
    * @param {Int} x - the label canvas x position
    * @param {Int} y - the label canvas y position
+   * @param {Boolean} [draw] - if to draw, if false, it just registers
    * @param {Int} [size] - the label font size
    */
-  label(text, x, y, size=10){
-    this.canvas.font = parseInt(size,10) + "px Georgia";
-    this.canvas.fillStyle = "#000000"
-    this.canvas.fillText(text, x, y);
-    console.log(`Drew text ${text} at ${x} ${y}`);
+  label(text, x, y, draw=true, size=10){
+    if (draw){
+      this.canvas.font = parseInt(size,10) + "px Georgia";
+      this.canvas.fillStyle = "#000000"
+      this.canvas.fillText(text, x, y);
+    }
     // register this point
     this.labels[text] = [x, y];
   }
