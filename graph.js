@@ -71,13 +71,15 @@ class graph {
     this.frame.height = this.size[1];
     this.scale = Math.min(this.size[0], this.size[1]) / 2;
     this.item.appendChild(this.frame);
+    this.labels={};
+    this.filtered=false;
+    // TODO add addEventListener('click', function(event) {});
   }
 
   /** Apply new data after a filter.
    * @param {Array} data - the new data, ordered like the original data
    */
   filter(data) {
-    this.clear_filters();
     this.data = data;
     if (this.format === "bar") {
       this.bar_filter();
@@ -90,12 +92,14 @@ class graph {
     } else { // pie or invalid
       this.pie_filter();
     }
+    this.filtered = true;
     return this.canvas;
   }
 
   /** Draw a graph of the specified type.
    */
   draw() {
+    this.canvas.clearRect(0, 0, this.frame.width, this.frame.height);
     if (this.format === "bar") {
       this.bar();
     } else if (this.format === "histogram") {
@@ -107,20 +111,47 @@ class graph {
     } else { // pie or invalid
       this.pie();
     }
+    this.filtered = false;
     return this.canvas;
   }
 
-  clear_filters() {
-    var i = 0;
-    // TODO -- figure out how to do this now with canvas
-    // maybe by z-ind?
+  /** Create and register a data label.
+   * @param {String} text - the label text
+   * @param {Int} x - the label canvas x position
+   * @param {Int} y - the label canvas y position
+   * @param {Int} [size] - the label font size
+   */
+  label(text, x, y, size=10){
+    this.canvas.font = parseInt(size,10) + "px Georgia";
+    this.canvas.fillStyle = "#000000"
+    this.canvas.fillText(text, x, y);
+    console.log(`Drew text ${text} at ${x} ${y}`);
+    // register this point
+    this.labels[text] = [x, y];
+  }
+  /** Apply new data after a filter.
+   * @param {Int} x - the x position of the click
+   * @param {Int} y - the y position of the click
+   */
+  closest_label(x,y){
+    this.labels;
+    var dist = Infinity;
+    var closest;
+    var pos;
+    for (var label in this.labels) {
+      pos = Math.sqrt((this.labels[label][0])^2 + (this.labels[label][1])^2);
+      if (pos < dist){
+        closest = label;
+      }
+    return closest;
+    }
   }
 
   /** Draw a pie chart
    */
   pie() {
+    // labels
     var prct = 0;
-    //TODO need sum of all
     var i = 0;
     for (var point in this.data) {
       this.canvas.beginPath();
@@ -136,6 +167,9 @@ class graph {
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
+      this.label(point,
+        (this.size[0] / 2) * (1 + Math.cos(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0]))))),
+        (this.size[0] / 2) * (1 + Math.sin(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0]))))));
       prct = (this.data[point]['x'] / this.max[0]) + prct;
       i++;
     }
@@ -145,6 +179,7 @@ class graph {
    */
   bubble() {
     // draw axes
+    // TODO Draw clickable lables
     var i = 0;
     for (var point in this.data) {
       this.canvas.beginPath();
@@ -158,6 +193,7 @@ class graph {
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
+      this.label(point, 0, 0);
       i++;
     }
   }
@@ -165,7 +201,7 @@ class graph {
   /** Draw a scatter plot
    */
   scatter() {
-    // get dot size
+    // TODO Draw clickable lables
     // draw axes
     var i = 0;
     for (var point in this.data) {
@@ -188,6 +224,7 @@ class graph {
   /** Draw a histogram
    */
   hist() {
+    // TODO Draw clickable lables
     var i = 0;
     // draw axes
     var offset = this.size[0] / (Object.keys(this.data).length);
@@ -208,6 +245,7 @@ class graph {
         `${point}[${this.data[point]['x']}] colored ${this.color[i % this.color.length]}`
       )
       this.canvas.fill();
+      this.label(point, 0, 0);
       i++;
     }
   }
@@ -215,6 +253,7 @@ class graph {
   /** Draw a bar chart
    */
   bar() {
+    // TODO Draw clickable lables
     var i = 0;
     // get origin
     var offset = this.size[1] / (Object.keys(this.data).length);
@@ -239,6 +278,7 @@ class graph {
         `${point}[${this.data[point]['x']}] colored ${this.color[i % this.color.length]}`
       )
       this.canvas.fill();
+      this.label(point, 0, 0);
       i++;
     }
   }
@@ -246,6 +286,7 @@ class graph {
   /** Draw filter context for pie chart
    */
   pie_filter() {
+    // TODO Draw clickable lables
     var i = 0;
     // get center
     //TODO change to curve
@@ -266,15 +307,19 @@ class graph {
       this.canvas.closePath();
       // fill this shape
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
-      prct = (this.initial_data[point]['x'] / this.max[0]) + prct;
       this.canvas.fill();
+      this.label(point,
+        (this.size[0] / 2) * (1 + Math.cos(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0]))))),
+        (this.size[0] / 2) * (1 + Math.sin(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0]))))));
       i++;
+      prct = (this.initial_data[point]['x'] / this.max[0]) + prct;
     }
   }
 
   /** Draw filter context for bubble chart
    */
   bubble_filter() {
+    // TODO Draw clickable lables
     // draw axes
     var i = 0;
     for (var point in this.data) {
@@ -288,6 +333,7 @@ class graph {
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
+      this.label(point, 0, 0);
       i++;
     }
   }
@@ -295,6 +341,7 @@ class graph {
   /** Draw filter context for scatter plot
    */
   scatter_filter() {
+    // TODO Draw clickable lables
     var i = 0;
     // draw axes
     for (var point in this.data) {
@@ -313,6 +360,7 @@ class graph {
   /** Draw filter context for histogram
    */
   hist_filter() {
+    // TODO Draw clickable lables
     // draw axes
     var i = 0;
     var offset = this.size[0] / (Object.keys(this.data).length);
@@ -329,6 +377,7 @@ class graph {
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
+      this.label(point, 0, 0);
       i++;
     }
   }
@@ -352,6 +401,7 @@ class graph {
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
+      this.label(point, 0, 0);
       i++;
     }
   }
