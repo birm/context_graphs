@@ -193,7 +193,8 @@ class graph {
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
-      this.label(point, 0, 0);
+      this.label(point, this.size[0] * (this.data[point]['x'] / this.max[0]), this.size[1] *
+        (this.data[point]['y'] / this.max[1]));
       i++;
     }
   }
@@ -245,7 +246,8 @@ class graph {
         `${point}[${this.data[point]['x']}] colored ${this.color[i % this.color.length]}`
       )
       this.canvas.fill();
-      this.label(point, 0, 0);
+      this.label(point, offset * (i + 0.5), this.size[1], 0.8* this.size[1] - this.scale * (this.data[
+        point]['x'] / this.max[0]));
       i++;
     }
   }
@@ -278,7 +280,7 @@ class graph {
         `${point}[${this.data[point]['x']}] colored ${this.color[i % this.color.length]}`
       )
       this.canvas.fill();
-      this.label(point, 0, 0);
+      this.label(point, this.scale * (this.data[point]['x'] / this.max[0]), offset * (i + 0.5));
       i++;
     }
   }
@@ -333,7 +335,8 @@ class graph {
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
-      this.label(point, 0, 0);
+      this.label(point, this.size[0] * (this.data[point]['x'] / this.max[0]), this.size[1] *
+        (this.data[point]['y'] / this.max[1]));
       i++;
     }
   }
@@ -377,7 +380,8 @@ class graph {
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
-      this.label(point, 0, 0);
+      this.label(point, offset * (i + 0.5), this.size[1], 0.8* this.size[1] - this.scale * (this.initial_data[
+        point]['x'] / this.max[0]));
       i++;
     }
   }
@@ -401,7 +405,7 @@ class graph {
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
-      this.label(point, 0, 0);
+      this.label(point, this.scale * (this.initial_data[point]['x'] / this.max[0]), offset * (i + 0.5));
       i++;
     }
   }
