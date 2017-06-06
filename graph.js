@@ -123,7 +123,9 @@ class graph {
    */
   label(text, x, y, size=10){
     this.canvas.font = parseInt(size,10) + "px Georgia";
+    this.canvas.fillStyle = "#000000"
     this.canvas.fillText(text, x, y);
+    console.log(`Drew text ${text} at ${x} ${y}`);
     // register this point
     this.labels[text] = [x, y];
   }
@@ -133,13 +135,13 @@ class graph {
    */
   closest_label(x,y){
     this.labels;
-    var dist = inf;
+    var dist = Infinity;
     var closest;
     var pos;
     for (var label in this.labels) {
       pos = Math.sqrt((this.labels[label][0])^2 + (this.labels[label][1])^2);
       if (pos < dist){
-        closest = point;
+        closest = label;
       }
     return closest;
     }
@@ -166,8 +168,8 @@ class graph {
       this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
       this.label(point,
-        Math.cos(2 * Math.PI * (prct + (this.data[point]['x'] / (2*this.max[0])))),
-        Math.cos(2 * Math.PI * (prct + (this.data[point]['x'] / (2*this.max[0])))));
+        (this.size[0] / 2) * (1 + Math.cos(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0]))))),
+        (this.size[0] / 2) * (1 + Math.sin(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0]))))));
       prct = (this.data[point]['x'] / this.max[0]) + prct;
       i++;
     }
@@ -307,8 +309,8 @@ class graph {
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
       this.label(point,
-        Math.cos(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0])))),
-        Math.cos(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0])))));
+        (this.size[0] / 2) * (1 + Math.cos(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0]))))),
+        (this.size[0] / 2) * (1 + Math.sin(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0]))))));
       i++;
       prct = (this.initial_data[point]['x'] / this.max[0]) + prct;
     }
