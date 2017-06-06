@@ -73,7 +73,7 @@ class graph {
     this.item.appendChild(this.frame);
     this.labels={};
     this.filtered=false;
-    // TODO add addEventListener('click', function(event) {}); 
+    // TODO add addEventListener('click', function(event) {});
   }
 
   /** Apply new data after a filter.
@@ -165,6 +165,7 @@ class graph {
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
+      this.label(point, 0, 0);
       prct = (this.data[point]['x'] / this.max[0]) + prct;
       i++;
     }
@@ -188,6 +189,7 @@ class graph {
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
+      this.label(point, 0, 0);
       i++;
     }
   }
@@ -239,6 +241,7 @@ class graph {
         `${point}[${this.data[point]['x']}] colored ${this.color[i % this.color.length]}`
       )
       this.canvas.fill();
+      this.label(point, 0, 0);
       i++;
     }
   }
@@ -271,6 +274,7 @@ class graph {
         `${point}[${this.data[point]['x']}] colored ${this.color[i % this.color.length]}`
       )
       this.canvas.fill();
+      this.label(point, 0, 0);
       i++;
     }
   }
@@ -301,6 +305,7 @@ class graph {
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       prct = (this.initial_data[point]['x'] / this.max[0]) + prct;
       this.canvas.fill();
+      this.label(point, 0, 0);
       i++;
     }
   }
@@ -322,6 +327,7 @@ class graph {
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
+      this.label(point, 0, 0);
       i++;
     }
   }
@@ -365,6 +371,7 @@ class graph {
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
+      this.label(point, 0, 0);
       i++;
     }
   }
@@ -388,6 +395,7 @@ class graph {
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
+      this.label(point, 0, 0);
       i++;
     }
   }
