@@ -71,8 +71,8 @@ class graph {
     this.frame.height = this.size[1];
     this.scale = Math.min(this.size[0], this.size[1]) / 2;
     this.item.appendChild(this.frame);
-    this.labels={};
-    this.filtered=false;
+    this.labels = {};
+    this.filtered = false;
     // TODO add addEventListener('click', function(event) {});
   }
 
@@ -122,30 +122,32 @@ class graph {
    * @param {Boolean} [draw] - if to draw, if false, it just registers
    * @param {Int} [size] - the label font size
    */
-  label(text, x, y, draw=true, size=10){
-    if (draw){
-      this.canvas.font = parseInt(size,10) + "px Georgia";
+  label(text, x, y, draw = true, size = 10) {
+    if (draw) {
+      this.canvas.font = parseInt(size, 10) + "px Georgia";
       this.canvas.fillStyle = "#000000"
       this.canvas.fillText(text, x, y);
     }
     // register this point
     this.labels[text] = [x, y];
   }
+
   /** Apply new data after a filter.
    * @param {Int} x - the x position of the click
    * @param {Int} y - the y position of the click
    */
-  closest_label(x,y){
+  closest_label(x, y) {
     this.labels;
     var dist = Infinity;
     var closest;
     var pos;
     for (var label in this.labels) {
-      pos = Math.sqrt((this.labels[label][0])^2 + (this.labels[label][1])^2);
-      if (pos < dist){
+      pos = Math.sqrt((this.labels[label][0]) ^ 2 + (this.labels[label][1]) ^
+        2);
+      if (pos < dist) {
         closest = label;
       }
-    return closest;
+      return closest;
     }
   }
 
@@ -170,8 +172,10 @@ class graph {
       this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
       this.label(point,
-        (this.size[0] / 2) * (1 + Math.cos(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0]))))),
-        (this.size[0] / 2) * (1 + Math.sin(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0]))))));
+        (this.size[0] / 2) * (1 + Math.cos(2 * Math.PI * (prct + (this.initial_data[
+          point]['x'] / (2 * this.max[0]))))),
+        (this.size[0] / 2) * (1 + Math.sin(2 * Math.PI * (prct + (this.initial_data[
+          point]['x'] / (2 * this.max[0]))))));
       prct = (this.data[point]['x'] / this.max[0]) + prct;
       i++;
     }
@@ -195,7 +199,8 @@ class graph {
       // fill this shape
       this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
-      this.label(point, this.size[0] * (this.data[point]['x'] / this.max[0]), this.size[1] *
+      this.label(point, this.size[0] * (this.data[point]['x'] / this.max[0]),
+        this.size[1] *
         (this.data[point]['y'] / this.max[1]));
       i++;
     }
@@ -248,8 +253,9 @@ class graph {
         `${point}[${this.data[point]['x']}] colored ${this.color[i % this.color.length]}`
       )
       this.canvas.fill();
-      this.label(point, offset * (i + 0.5), this.size[1], 0.8* this.size[1] - this.scale * (this.data[
-        point]['x'] / this.max[0]));
+      this.label(point, offset * (i + 0.5), this.size[1], 0.8 * this.size[1] -
+        this.scale * (this.data[
+          point]['x'] / this.max[0]));
       i++;
     }
   }
@@ -282,7 +288,8 @@ class graph {
         `${point}[${this.data[point]['x']}] colored ${this.color[i % this.color.length]}`
       )
       this.canvas.fill();
-      this.label(point, this.scale * (this.data[point]['x'] / this.max[0]), offset * (i + 0.5));
+      this.label(point, this.scale * (this.data[point]['x'] / this.max[0]),
+        offset * (i + 0.5));
       i++;
     }
   }
@@ -313,8 +320,10 @@ class graph {
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
       this.label(point,
-        (this.size[0] / 2) * (1 + Math.cos(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0]))))),
-        (this.size[0] / 2) * (1 + Math.sin(2 * Math.PI * (prct + (this.initial_data[point]['x'] / (2*this.max[0]))))));
+        (this.size[0] / 2) * (1 + Math.cos(2 * Math.PI * (prct + (this.initial_data[
+          point]['x'] / (2 * this.max[0]))))),
+        (this.size[0] / 2) * (1 + Math.sin(2 * Math.PI * (prct + (this.initial_data[
+          point]['x'] / (2 * this.max[0]))))));
       i++;
       prct = (this.initial_data[point]['x'] / this.max[0]) + prct;
     }
@@ -337,7 +346,8 @@ class graph {
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
-      this.label(point, this.size[0] * (this.data[point]['x'] / this.max[0]), this.size[1] *
+      this.label(point, this.size[0] * (this.data[point]['x'] / this.max[0]),
+        this.size[1] *
         (this.data[point]['y'] / this.max[1]));
       i++;
     }
@@ -382,8 +392,9 @@ class graph {
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
-      this.label(point, offset * (i + 0.5), this.size[1], 0.8* this.size[1] - this.scale * (this.initial_data[
-        point]['x'] / this.max[0]));
+      this.label(point, offset * (i + 0.5), this.size[1], 0.8 * this.size[1] -
+        this.scale * (this.initial_data[
+          point]['x'] / this.max[0]));
       i++;
     }
   }
@@ -407,7 +418,8 @@ class graph {
       this.canvas.closePath();
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
-      this.label(point, this.scale * (this.initial_data[point]['x'] / this.max[0]), offset * (i + 0.5));
+      this.label(point, this.scale * (this.initial_data[point]['x'] / this.max[
+        0]), offset * (i + 0.5));
       i++;
     }
   }
