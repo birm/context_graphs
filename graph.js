@@ -120,9 +120,9 @@ class graph {
    * @param {Int} x - the label canvas x position
    * @param {Int} y - the label canvas y position
    * @param {Boolean} [draw] - if to draw, if false, it just registers
-   * @param {Int} [size] - the label font size
+   * @param {Int} [size] - the label font size in px, default 12
    */
-  label(text, x, y, draw = true, size = 10) {
+  label(text, x, y, draw = true, size = 12) {
     if (draw) {
       this.canvas.font = parseInt(size, 10) + "px Georgia";
       this.canvas.fillStyle = "#000000"
@@ -172,9 +172,9 @@ class graph {
       this.canvas.fillStyle = this.color[i % this.color.length];
       this.canvas.fill();
       this.label(point,
-        (this.size[0] / 2) * (1 + Math.cos(2 * Math.PI * (prct + (this.initial_data[
+        (this.size[0] / 2) * (1 + 0.8 * Math.cos(2 * Math.PI * (prct + (this.initial_data[
           point]['x'] / (2 * this.max[0]))))),
-        (this.size[0] / 2) * (1 + Math.sin(2 * Math.PI * (prct + (this.initial_data[
+        (this.size[0] / 2) * (1 + 0.8 * Math.sin(2 * Math.PI * (prct + (this.initial_data[
           point]['x'] / (2 * this.max[0]))))));
       prct = (this.data[point]['x'] / this.max[0]) + prct;
       i++;
@@ -320,9 +320,9 @@ class graph {
       this.canvas.fillStyle = this.filtercolor[i % this.color.length];
       this.canvas.fill();
       this.label(point,
-        (this.size[0] / 2) * (1 + Math.cos(2 * Math.PI * (prct + (this.initial_data[
+        (this.size[0] / 2) * (1 + 0.8 * Math.cos(2 * Math.PI * (prct + (this.initial_data[
           point]['x'] / (2 * this.max[0]))))),
-        (this.size[0] / 2) * (1 + Math.sin(2 * Math.PI * (prct + (this.initial_data[
+        (this.size[0] / 2) * (1 + 0.8 * Math.sin(2 * Math.PI * (prct + (this.initial_data[
           point]['x'] / (2 * this.max[0]))))));
       i++;
       prct = (this.initial_data[point]['x'] / this.max[0]) + prct;
